@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<header>
+  <img src="/Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cars.html">Cars</a></li>
+      <li><a href="sellcars.html">Sell Your Car</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="signin.html" >Sign In</a></li>
+      <li><a href="signup.html" >Sign Up</a></li>
+    </ul>
+  </nav>
+</header>
+
+<form>
+  <h2>Filter Your Cars</h2>
+  <label for="make">Make:</label>
+  <select id="make" name="make">
+    <option value="">All</option>
+    <option value="toyota">Toyota</option>
+    <option value="honda">Honda</option>
+    <option value="ford">Ford</option>
+  </select>
+
+  <label for="model">Model:</label>
+  <select id="model" name="model">
+    <option value="">All</option>
+    <option value="corolla">Corolla</option>
+    <option value="camry">Camry</option>
+    <option value="accord">Accord</option>
+    <option value="mustang">Mustang</option>
+  </select>
+
+  <label for="year">Year:</label>
+  <select id="year" name="year">
+    <option value="">All</option>
+    <option value="2020">2020</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+  </select>
+
+  <button type="submit">Filter</button>
+</form>
+
+<body>
+  <script src="script.js"></script>
+
+
+  <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script>
+</body>
+
+</html>
