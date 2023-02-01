@@ -52,6 +52,57 @@
 
 <body>
   <script src="script.js"></script>
+  <head>
+    <title>Car Listings</title>
+    <style>
+      /* Add styles for the page here */
+      .card {
+        width: 300px;
+        height: 400px;
+        box-shadow: 2px 2px 5px #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 20px;
+        float: left;
+      }
+  
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+  
+      .card h3 {
+        margin: 10px;
+        font-size: 18px;
+      }
+  
+      .card p {
+        margin: 10px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+    <!-- Add a header for the page -->
+    <header>
+      <h1>Car Listings</h1>
+    </header>
+  
+    <!-- Add a section for the car listings -->
+    <section>
+      <!-- Loop through the car listings data and display each listing in a card -->
+      <div class="card">
+        <img src="car1.jpg" alt="Car 1">
+        <h3>Car 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+      </div>
+      <div class="card">
+        <img src="car2.jpg" alt="Car 2">
+        <h3>Car 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+      </div>
+      <!-- Add more cards as needed -->
+    </section>
 </body>
 
 </html>
