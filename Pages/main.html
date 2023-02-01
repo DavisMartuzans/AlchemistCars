@@ -4,28 +4,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <title>AlchemistCars</title>
+  <link href="/style.css" rel="stylesheet" type="text/css" />
 </head>
-  
 <header>
   <img src="/Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
   <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="cars.html">Cars</a></li>
-      <li><a href="sellcars.html">Sell Your Car</a></li>
-      <li><a href="Contact.html">Contact</a></li>
-      <li><a href="signin.html" >Sign In</a></li>
-      <li><a href="signup.html" >Sign Up</a></li>
+      <li><a href="/Pages/main.html">Home</a></li>
+      <li><a href="/Pages/cars.html">Cars</a></li>
+      <li><a href="/Pages/sellcars.html">Sell Your Car</a></li>
+      <li><a href="/Pages/contact.html">Contact</a></li>
+      <li><a href="/Pages/profile.html" >Sign In/Up</a></li>
     </ul>
   </nav>
 </header>
-  
+<style>
+      .welcome {
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .about {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+      }
+      .title {
+        color: grey;
+        font-size: 18px;
+      }
+      button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+      }
+      button:hover, a:hover {
+        opacity: 0.7;
+      }
+</style>
 <body>
-  <script src="script.js"></script>
+  <div class="container">
+    <h2 class="welcome">Welcome to AlchemistCars</h2>
+    <p class="about">
+      Here you can find a variety of awesome cars. 
+    </p>
+
+    <div class="card">
+      <img src="/Components/bmwe46.jpg" alt="Car 1" style="width:100%">
+      <h1>BMW 330i</h1>
+      <p class="title">Make: BMW</p>
+      <p>Model: 3.series</p>
+      <p>Year: 2002</p>
+      <p>Price: €5000</p>
+      <p><button>Learn More</button></p>
+    </div>
   
-  <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script> 
+    <div class="card">
+      <img src="/Components/audia6c4.jpg" alt="Car 2" style="width:100%">
+      <h1>Audi A6 C4</h1>
+      <p class="title">Make: Audi</p>
+      <p>Model: A6</p>
+      <p>Year: 1994</p>
+      <p>Price: €3000</p>
+      <p><button>Learn More</button></p>
+    </div>
+  <script src="script.js"></script>
 </body>
 
 </html>
