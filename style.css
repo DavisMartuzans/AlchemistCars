@@ -1,8 +1,7 @@
 /* page.html */
 html, body {
-    height: 100%;
-    width: 100%;
-    overflow-x:hidden
+    height: auto;
+    width: auto;
   }
   /* navbar */
   header {
@@ -22,13 +21,13 @@ html, body {
   nav ul {
     display: flex;
     list-style: none;
-    margin: 0;
+    margin: 20;
     padding: 0;
   }
   
   nav a {
     display: block;
-    padding: 10px 20px;
+    padding:10px 15px;
     color: #333;
     text-decoration: none;
   }
@@ -152,4 +151,4 @@ html, body {
     display: block;
     float: right;
     font-size: 20px
-  
+  }

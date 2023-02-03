@@ -31,15 +31,29 @@
         margin-bottom: 20px;
       }
       .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        max-width: 300px;
-        margin: auto;
-        text-align: center;
-        font-family: arial;
+        width: 300px;
+        height: 400px;
+        box-shadow: 2px 2px 5px #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 20px;
+        float: left;
       }
-      .title {
-        color: grey;
+  
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+  
+      .card h3 {
+        margin: 10px;
         font-size: 18px;
+      }
+  
+      .card p {
+        margin: 10px;
+        font-size: 14px;
       }
       button {
         border: none;
@@ -65,8 +79,8 @@
     </p>
 
     <div class="card">
-      <img src="/Components/bmwe46.jpg" alt="Car 1" style="width:100%">
-      <h1>BMW 330i</h1>
+      <img src="/Components/bmwe46.jpg" alt="Car 5" style="width:100%">
+      <h3>BMW 330i</h3>
       <p class="title">Make: BMW</p>
       <p>Model: 3.series</p>
       <p>Year: 2002</p>
@@ -75,12 +89,21 @@
     </div>
   
     <div class="card">
-      <img src="/Components/audia6c4.jpg" alt="Car 2" style="width:100%">
-      <h1>Audi A6 C4</h1>
+      <img src="/Components/audia6c4.jpg" alt="Car 6" style="width:100%">
+      <h3>Audi A6 C4</h3>
       <p class="title">Make: Audi</p>
       <p>Model: A6</p>
       <p>Year: 1994</p>
       <p>Price: €3000</p>
+      <p><button>Learn More</button></p>
+    </div>
+    <div class="card">
+      <img src="/Components/w210.jpeg" alt="Car 9" style="width:100%">
+      <h3>MB E200 W210</h3>
+      <p class="title">Make: Mercedes-Benz</p>
+      <p>Model: E200</p>
+      <p>Year: 2002</p>
+      <p>Price: €2500</p>
       <p><button>Learn More</button></p>
     </div>
   <script src="script.js"></script>
