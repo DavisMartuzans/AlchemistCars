@@ -70,7 +70,7 @@ html, body {
   /*sellcars.html css  */
   .form-container {
     width: 500px;
-    margin: 0 auto;
+    margin: auto;
   }
   
   .form-group {
