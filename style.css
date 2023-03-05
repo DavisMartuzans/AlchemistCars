@@ -98,7 +98,6 @@ html, body {
     cursor: pointer;
     width: 100%;
   
-  /* login popup  */
   body {
     font-family: Arial, sans-serif;
   }
@@ -126,29 +125,3 @@ html, body {
     text-decoration: none;
   }
   
-  #signin-popup, #signup-popup {
-    background-color: rgba(0, 0, 0, 0.8);
-    display: none;
-    height: 100%;
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-  }
-  
-  .popup-content {
-    background-color: #fff;
-    border: 1px solid #333;
-    margin: 100px auto;
-    padding: 20px;
-    position: relative;
-    width: 400px;
-  }
-  
-  .close-btn {
-    background-color: #333;
-    color: #fff;
-    cursor: pointer;
-    display: block;
-    float: right;
-    font-size: 20px
-  }

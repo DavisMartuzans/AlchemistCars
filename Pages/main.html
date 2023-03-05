@@ -15,11 +15,24 @@
       <li><a href="/Pages/cars.html">Cars</a></li>
       <li><a href="/Pages/sellcars.html">Sell Your Car</a></li>
       <li><a href="/Pages/contact.html">Contact</a></li>
-      <li><a href="/Pages/profile.html" >Sign In/Up</a></li>
       <li><a href="/Pages/leasing.html">Leasing</a></li>
+      <li><a id="open-form" >Sign In</a></li>
     </ul>
   </nav>
+<div id="form-container">
+  <div class="form-header">
+    <h2>Sign In</h2>
+    <button id="close-form">X</button>
+  </div>
+  <form>
+    <input type="text" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Confirm!</button>
+  </form>
+  <p>Don't have an account? <a href="#">Sign up</a></p>
+</div>
 </header>
+<script src="script.js"></script>
 <style>
       .welcome {
         display: flex;
@@ -75,7 +88,82 @@
       button:hover, a:hover {
         opacity: 0.7;
       }
+/* Sign in form */
+#form-container {
+  display: none;
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 9999; /* Set a high z-index value to make the form appear on top */
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-header h2 {
+  margin: 0;
+
+}
+
+#close-form {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 20px;
+}
+
+a {
+  color: #0095ff;
+}
 </style>
+<script>
+const openFormButton = document.getElementById('open-form');
+const closeFormButton = document.getElementById('close-form');
+const formContainer = document.getElementById('form-container');
+
+openFormButton.addEventListener('click', () => {
+  formContainer.style.display = 'block';
+});
+
+closeFormButton.addEventListener('click', () => {
+  formContainer.style.display = 'none';
+});
+</script>
 <body>
   <div class="container">
     <h2 class="welcome">Welcome to AlchemistCars</h2>
@@ -111,7 +199,6 @@
       <p>Price: €2500</p>
       <p><button>Learn More</button></p>
     </div>
-  <script src="script.js"></script>
 </body>
 
 </html>

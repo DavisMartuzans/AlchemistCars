@@ -1,19 +1,11 @@
-const signUpBtn = document.querySelector('#sign-up-btn');
-const signInBtn = document.querySelector('#sign-in-btn');
-const emailInput = document.querySelector('#email');
-const passwordInput = document.querySelector('#password');
-const message = document.querySelector('#message');
+const openFormButton = document.getElementById('open-form');
+const closeFormButton = document.getElementById('close-form');
+const formContainer = document.getElementById('form-container');
 
-signUpBtn.addEventListener('click', () => {
-  const email = emailInput.value;
-  const password = passwordInput.value;
-  // Add sign up logic here
-  message.textContent = 'Signed up successfully';
+openFormButton.addEventListener('click', () => {
+  formContainer.style.display = 'block';
 });
 
-signInBtn.addEventListener('click', () => {
-  const email = emailInput.value;
-  const password = passwordInput.value;
-  // Add sign in logic here
-  message.textContent = 'Signed in successfully';
+closeFormButton.addEventListener('click', () => {
+  formContainer.style.display = 'none';
 });
