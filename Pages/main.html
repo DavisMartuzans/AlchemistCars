@@ -12,7 +12,6 @@
   <nav>
     <ul>
       <li><a href="/Pages/main.html">Home</a></li>
-      <li><a href="/Pages/cars.html">Cars</a></li>
       <li><a href="/Pages/sellcars.html">Sell Your Car</a></li>
       <li><a href="/Pages/leasing.html">Leasing</a></li>
       <li><a id="open-form" >Sign In</a></li>
@@ -34,15 +33,81 @@
 <script src="/script.js"></script>
 <body>
     <h2 class="welcome">Welcome to AlchemistCars</h2>
-    <p class="about">
-      Here you can find a variety of awesome cars. 
-    </p>
-    <p>Phone: +371 25577052<br>E-mail: martuzans.davis@gmail.com<br>Address: Dārzciema iela 64, Rīga</Address></p>
+    <p class="about">Here you can find a variety of awesome cars. </p>
 </body>
-<footer>
-  <div class="footer-container">
-    <p>Copyright © 2023</p>
-    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-  </div>
-</footer>
+<form>
+  <label for="make">Make:</label>
+  <select id="make" name="make">
+    <option value="">All</option>
+    <option value="mercedesbenz">Mercedes-Benz</option>
+    <option value="bmw">BMW</option>
+    <option value="audi">Audi</option>
+  </select>
+
+  <label for="model">Model:</label>
+  <select id="model" name="model">
+    <option value="">All</option>
+    <option value="e200">E200</option>
+    <option value="3.series">3.series</option>
+    <option value="a6">A6</option>
+  </select>
+
+  <label for="year">Year:</label>
+  <select id="year" name="year">
+    <option value="">All</option>
+    <option value="2002">2002</option>
+    <option value="1994">1994</option>
+  </select>
+
+  <button type="submit">Filter</button>
+</form>
+<body>
+    <section>
+      <div class="card">
+        <img src="/Components/bmwe46.jpg" alt="Car 5" style="width:100%">
+        <h3>BMW 330i</h3>
+        <p class="title">Make: BMW</p>
+        <p>Model: 3.series</p>
+        <p>Year: 2002</p>
+        <p>Price: €5000</p>
+        <a href="/Cars/330i.html"><button>Learn More</button></a>
+      </div>
+      <div class="card">
+        <img src="/Components/audia6c4.jpg" alt="Car 6" style="width:100%">
+        <h3>Audi A6 C4</h3>
+        <p class="title">Make: Audi</p>
+        <p>Model: A6</p>
+        <p>Year: 1994</p>
+        <p>Price: €3000</p>
+        <a href="/Cars/A6.html"><button>Learn More</button></a>
+      </div>
+      <div class="card">
+        <img src="/Components/w210.jpeg" alt="Car 9" style="width:100%">
+        <h3>MB E200 W210</h3>
+        <p class="title">Make: Mercedes-Benz</p>
+        <p>Model: E200</p>
+        <p>Year: 2002</p>
+        <p>Price: €2500</p>
+        <a href="/Cars/E200.html"><button>Learn More</button></a>
+      </div>
+      <div id="form-container">
+        <div class="form-header">
+          <p>Sign In</p>
+          <button id="close-form"></button>
+        </div>
+        <form>
+          <input type="text" placeholder="Email">
+          <input type="password" placeholder="Password">
+          <button>Confirm!</button>
+        </form>
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+      </div>
+    </section>
+    <footer>
+      <div class="footer-container">
+        <p>Copyright © 2023</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      </div>
+    </footer>
+</body>
 </html>
