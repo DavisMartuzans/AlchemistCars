@@ -30,11 +30,11 @@
   <p>Don't have an account? <a href="#">Sign up</a></p>
 </div>
 </header>
-<script src="/script.js"></script>
+<script type="text/javascript" src="/script.js"></script>
+<script type="text/javascript" src="/cars.js"></script>
 <body>
     <h2 class="welcome">Welcome to AlchemistCars</h2>
     <p class="about">Here you can find a variety of awesome cars. </p>
-</body>
 <form>
   <label for="make">Make:</label>
   <select id="make" name="make">
@@ -48,7 +48,7 @@
   <select id="model" name="model">
     <option value="">All</option>
     <option value="e200">E200</option>
-    <option value="3.series">3.series</option>
+    <option value="330i">330i</option>
     <option value="a6">A6</option>
   </select>
 
@@ -59,15 +59,13 @@
     <option value="1994">1994</option>
   </select>
 
-  <button type="submit">Filter</button>
-</form>
-<body>
+  <button id="filterButton" onclick="filterCars()">Filter</button>
     <section>
       <div class="card">
         <img src="/Components/bmwe46.jpg" alt="Car 5" style="width:100%">
         <h3>BMW 330i</h3>
         <p class="title">Make: BMW</p>
-        <p>Model: 3.series</p>
+        <p>Model: 330i</p>
         <p>Year: 2002</p>
         <p>Price: €5000</p>
         <a href="/Cars/330i.html"><button>Learn More</button></a>
@@ -83,7 +81,7 @@
       </div>
       <div class="card">
         <img src="/Components/w210.jpeg" alt="Car 9" style="width:100%">
-        <h3>MB E200 W210</h3>
+        <h3>Mercedes-Benz E200</h3>
         <p class="title">Make: Mercedes-Benz</p>
         <p>Model: E200</p>
         <p>Year: 2002</p>
@@ -109,5 +107,8 @@
         <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
       </div>
     </footer>
+    <script>
+
+    </script>
 </body>
 </html>

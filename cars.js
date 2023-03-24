@@ -1,65 +1,61 @@
 const cars = [
-  {
-    make: "Toyota",
-    model: "Corolla",
-    year: 2020,
-    price: 25000,
-    image: "https://via.placeholder.com/300x200",
-    features: ["Automatic", "4-door sedan", "Gasoline"]
-  },
-  {
-    make: "Honda",
-    model: "Civic",
-    year: 2018,
-    price: 20000,
-    image: "https://via.placeholder.com/300x200",
-    features: ["Manual", "2-door coupe", "Gasoline"]
-  },
-  {
-    make: "Tesla",
-    model: "Model 3",
-    year: 2021,
-    price: 45000,
-    image: "https://via.placeholder.com/300x200",
-    features: ["Electric", "4-door sedan"]
-  }
+  { make: 'BMW', model: '330i', year: 2002 },
+  { make: 'Mercedes-Benz', model: 'E200', year: 2002 },
+  { make: 'Audi', model: 'A6', year: 1994 },
 ];
 
-const carList = document.getElementById("car-list");
-
-function showCars(cars) {
-  carList.innerHTML = "";
-  for (let i = 0; i < cars.length; i++) {
-    const car = cars[i];
-    const carCard = document.createElement("div");
-    carCard.classList.add("car-card");
-    carCard.innerHTML = `
-      <img src="${car.image}" alt="${car.make} ${car.model}">
+// Function to display all cars
+function displayAllCars() {
+  const carList = document.querySelector('.car-list');
+  carList.innerHTML = '';
+  
+  cars.forEach(car => {
+    const carElement = document.createElement('div');
+    carElement.classList.add('car');
+    carElement.innerHTML = `
       <h2>${car.make} ${car.model}</h2>
       <p>Year: ${car.year}</p>
-      <p>Price: $${car.price.toLocaleString()}</p>
-      <p>Features: ${car.features.join(", ")}</p>
     `;
-    carList.appendChild(carCard);
-  }
+    carList.appendChild(carElement);
+  });
 }
 
-showCars(cars);
-
-const filterForm = document.getElementById("filter-form");
-
-filterForm.addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  const selectedMake = document.querySelector('input[name="make"]:checked').value;
-  const selectedYear = document.querySelector('input[name="year"]:checked').value;
-  const selectedPrice = document.querySelector('input[name="price"]:checked').value;
-
-  let filteredCars = cars.filter(function(car) {
-    return car.make === selectedMake &&
-           car.year === Number(selectedYear) &&
-           car.price <= Number(selectedPrice);
+// Function to filter cars
+function filterCars() {
+  const make = document.querySelector('#make').value;
+  const model = document.querySelector('#model').value;
+  const year = document.querySelector('#year').value;
+  
+  const filteredCars = cars.filter(car => {
+    if (make && car.make !== make) {
+      return false;
+    }
+    if (model && car.model !== model) {
+      return false;
+    }
+    if (year && car.year !== parseInt(year)) {
+      return false;
+    }
+    return true;
   });
+  
+  const carList = document.querySelector('.car-list');
+  carList.innerHTML = '';
+  
+  filteredCars.forEach(car => {
+    const carElement = document.createElement('div');
+    carElement.classList.add('car');
+    carElement.innerHTML = `
+      <h2>${car.make} ${car.model}</h2>
+      <p>Year: ${car.year}</p>
+    `;
+    carList.appendChild(carElement);
+  });
+}
 
-  showCars(filteredCars);
-});
+// Add event listener to filter button
+const filterButton = document.querySelector('#filter-button');
+filterButton.addEventListener('click', filterCars);
+
+// Display all cars on page load
+displayAllCars();
