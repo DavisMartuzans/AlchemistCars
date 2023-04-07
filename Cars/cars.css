@@ -69,7 +69,7 @@ footer {
 
 .car-image {
   position: fixed;
-  top: 215px;
+  top: 270px;
   right: 100px;
   overflow: hidden;
   width: 45%;
@@ -133,4 +133,33 @@ form button {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 10px;
   max-width: 45%;
+}
+
+/* Price Button */
+.price-button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  width: 99%;
+}
+
+/* back button */
+button {
+  background-color: black;
+  border: none; 
+  color: white; 
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+  margin: 10px; 
+  cursor: pointer;
 }

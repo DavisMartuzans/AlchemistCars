@@ -203,7 +203,7 @@ input[type="text"], textarea {
 }
 
 input[type="submit"] {
-  background-color: #4CAF50;
+  background-color: black;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -230,4 +230,3 @@ nav li {
 .leasing{
   width: auto;
 }
-

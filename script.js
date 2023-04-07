@@ -9,3 +9,8 @@ openFormButton.addEventListener('click', () => {
 closeFormButton.addEventListener('click', () => {
   formContainer.style.display = 'none';
 });
+
+/* back button */
+function goBack() {
+  window.history.back();
+}
