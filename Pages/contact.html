@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Contact us!</title>
+  <link href="/style.css" rel="stylesheet" type="text/css" />
+</head>
+  
+<header>
+  <img src="/Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
+  <nav>
+    <ul>
+      <li><a href="/Pages/main.html">Home</a></li>
+      <li><a href="/Pages/cars.html">Cars</a></li>
+      <li><a href="/Pages/sellcars.html">Sell Your Car</a></li>
+      <li><a href="/Pages/contact.html">Contact</a></li>
+      <li><a href="/Pages/leasing.html">Leasing</a></li>
+      <li><a id="open-form" >Sign In</a></li>
+    </ul>
+  </nav>
+</header>
+<body>
+  <h1>Contact Us</h1>
+  <h3>Phone: +371 25577052<br>E-mail: smalldickenergy@getalife.com<br>Address: Tvaika iela 1, Rīga</Address></h3>
+  <form action="#">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" required><br><br>
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="5" required></textarea><br><br>
+    <input type="submit" value="Submit">
+ </form>
+ <div id="form-container">
+  <div class="form-header">
+    <h2>Sign In</h2>
+    <button id="close-form">X</button>
+  </div>
+  <form>
+    <input type="text" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Confirm!</button>
+  </form>
+  <p>Don't have an account? <a href="#">Sign up</a></p>
+</div>
+  <script src="script.js"></script>
+</body>
+
+</html>
