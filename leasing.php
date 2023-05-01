@@ -2,18 +2,19 @@
 <html>
   <head>
     <title>Leasing</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
   </head>
   <body>
     <header>
-        <img src="/Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
+        <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
         <nav>
           <ul>
-            <li><a href="/Pages/main.html">Home</a></li>
-            <li><a href="/Pages/sellcars.html">Sell Your Car</a></li>
-            <li><a href="/Pages/contact.html">Contact</a></li>
-            <li><a href="/Pages/leasing.html">Leasing</a></li>
+            <li><a href="main.php">Home</a></li>
+            <li><a href="parts.php">Parts</a></li>
+            <li><a href="sellcars.php">Sell Your Car</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="leasing.php">Leasing</a></li>
             <li><a id="open-form" >Sign In</a></li>
           </ul>
         </nav>
@@ -86,6 +87,6 @@
         
       </div>
     </section>
-    <script src="/script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

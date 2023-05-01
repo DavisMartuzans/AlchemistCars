@@ -5,17 +5,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Contact us!</title>
-  <link href="/style.css" rel="stylesheet" type="text/css" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <header>
   <img src="/Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
   <nav>
     <ul>
-      <li><a href="/Pages/main.html">Home</a></li>
-      <li><a href="/Pages/sellcars.html">Sell Your Car</a></li>
-      <li><a href="/Pages/contact.html">Contact</a></li>
-      <li><a href="/Pages/leasing.html">Leasing</a></li>
+      <li><a href="main.php">Home</a></li>
+      <li><a href="parts.php">Parts</a></li>
+      <li><a href="sellcars.php">Sell Your Car</a></li>
+      <li><a href="contact.php">Contact</a></li>
+      <li><a href="leasing.php">Leasing</a></li>
       <li><a id="open-form" >Sign In</a></li>
     </ul>
   </nav>

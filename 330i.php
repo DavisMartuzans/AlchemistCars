@@ -5,18 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMW 330i</title>
-    <link rel="stylesheet" href="/Cars/cars.css">
+    <link rel="stylesheet" href="cars.css">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <body>
     <header>
-        <img src="/Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
+        <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
         <nav>
           <ul>
-            <li><a href="/Pages/main.html">Home</a></li>
-            <li><a href="/Pages/sellcars.html">Sell Your Car</a></li>
-            <li><a href="/Pages/contact.html">Contact</a></li>
-            <li><a href="/Pages/leasing.html">Leasing</a></li>
+            <li><a href="main.php">Home</a></li>
+            <li><a href="parts.php">Parts</a></li>
+            <li><a href="sellcars.php">Sell Your Car</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="leasing.php">Leasing</a></li>
             <li><a id="open-form" >Sign In</a></li>
           </ul>
         </nav>
@@ -34,7 +35,7 @@
         </form>
         <p>Don't have an account? <a href="#">Sign up</a></p>
       </div>
-      <script src="/script.js"></script>
+      <script src="script.js"></script>
       <main>
         <section>
           <button onclick="goBack()">Back</button>
@@ -47,7 +48,7 @@
         </div>
         </section>
         <div>
-          <img src="/Components/bmwe46.jpg" class="car-image" alt="BMW 330i 2002">
+          <img src="Components/bmwe46.jpg" class="car-image" alt="BMW 330i 2002">
         </div>
         <button class="price-button">€5000</button>
       </main>
