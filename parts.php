@@ -98,14 +98,12 @@ filterButton.addEventListener("click", () => {
   const model = document.querySelector("#model").value;
   const year = document.querySelector("#year").value;
 
-  // Loop through each car in the list
   for (let i = 0; i < carList.children.length; i++) {
     const car = carList.children[i];
     const carMake = car.querySelector(".title").textContent.split(": ")[1];
     const carModel = car.querySelector("p:nth-of-type(2)").textContent.split(": ")[1];
     const carYear = car.querySelector("p:nth-of-type(3)").textContent.split(": ")[1];
 
-    // Hide the car if it doesn't match the selected filter
     if ((make === "all" || carMake === make) && (model === "all" || carModel === model) && (year === "all" || carYear === year)) {
       car.style.display = "";
     } else {

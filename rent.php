@@ -39,9 +39,12 @@
 	<form action="rent.php" method="post">
 		<label for="car">Select a Car:</label>
 		<select id="car" name="car">
-			<option value="Mercedes-Benz">Mercedes-Benz</option>
+			<option value="Mercedes-Benz E200">Mercedes-Benz E200</option>
+      <option value="Mercedes-Benz E63">Mercedes-Benz E63</option>
+      <option value="Volvo S60R">Volvo S60R</option>
 			<option value="Audi A6">Audi A6</option>
 			<option value="BMW 330i">BMW 330i</option>
+      <option value="Mazda MX5">Mazda MX5</option>
 		</select>
 		<br><br>
 		<label for="pickup_date">Pick-up Date:</label>
@@ -59,7 +62,6 @@ $return_date = $_POST['return_date'];
 
 require_once('db_credentials.php');
 
-// Insert data into database
 $sql = "INSERT INTO car_rentals (car, pickup_date, return_date)
 VALUES ('$car', '$pickup_date', '$return_date')";
 

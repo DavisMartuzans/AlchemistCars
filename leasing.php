@@ -43,6 +43,8 @@
         <option value="mercedesbenz">Mercedes-Benz</option>
         <option value="bmw">BMW</option>
         <option value="audi">Audi</option>
+        <option value="Volvo">Volvo</option>
+        <option value="Mazda">Mazda</option>s
       </select>
       
       <label for="model">Model:</label>
@@ -51,6 +53,7 @@
         <!-- options for Mercedes-Benz models -->
         <optgroup label="Mercedes-Benz">
           <option value="e200">E200</option>
+          <option value="e63">E63</option>
         </optgroup>
         <!-- options for BMW models -->
         <optgroup label="BMW">
@@ -60,13 +63,24 @@
         <optgroup label="Audi">
           <option value="a6">A6</option>
         </optgroup>
+        <!-- options for Mazda models -->
+        <optgroup label="Mazda">
+          <option value="mx5">MX5</option>
+        </optgroup>
+        <!-- options for Volvo models -->
+        <optgroup label="Volvo">
+          <option value="s60r">S60R</option>
+        </optgroup>
       </select>
 
       <label for="year">Year:</label>
       <select id="year" name="year">
         <option value="">Select Year</option>
+        <option value="1993">1993</option>
+        <option value="1994">1994</option>
         <option value="2022">2002</option>
-        <option value="2021">1994</option>
+        <option value="2005">2005</option>
+        <option value="2006">2006</option>
       </select>
       
       <label for="lease-term">Lease Term:</label>
