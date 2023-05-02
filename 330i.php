@@ -38,7 +38,7 @@
       <script src="script.js"></script>
       <main>
         <section>
-          <button onclick="goBack()">Back</button>
+        <button class="back-button" onclick="goBack()">Back</button>
           <h1>BMW 330i</h1>
          <div class="boxed-text">
           <p>Looking for a dynamic and luxurious ride? Look no further than this stunning BMW 330i from 2002!<br>This sleek and stylish sedan boasts a powerful 3.0-liter inline six-cylinder engine that delivers smooth<br> and responsive performance, making it a joy to drive in any situation.</p>

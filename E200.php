@@ -37,7 +37,7 @@
       <script src="script.js"></script>
       <main>
         <section>
-          <button onclick="goBack()">Back</button>
+        <button class="back-button" onclick="goBack()">Back</button>
           <h1>Mercedes-Benz E200</h1>
           <div class="boxed-text">
             <p>Looking for a luxurious and stylish ride that also delivers impressive performance and handling? Look<br> no further than this stunning Mercedes Benz E200 from 2002!</p>

@@ -9,7 +9,7 @@
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <header>
-  <img src="/Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
+  <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
   <nav>
     <ul>
       <li><a href="main.php">Home</a></li>
@@ -29,7 +29,7 @@
       <p>E-mail: contacts@alchemistcars.lv</p>
     </div>
   </div>
-  <!-- Google maps adress -->
+  <!-- Google maps address -->
 <div class="map-wrapper">
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2176.5768736965742!2d24.179247951646435!3d56.93891720726135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eece044123a401%3A0xd357dc05a50e0ea0!2zRMSBcnpjaWVtYSBpZWxhIDY0LCBMYXRnYWxlcyBwcmlla8WhcGlsc8STdGEsIFLEq2dhLCBMVi0xMDcz!5e0!3m2!1slv!2slv!4v1680898529500!5m2!1slv!2slv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div> 

@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <img src="/Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
+        <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
         <nav>
           <ul>
             <li><a href="main.php">Home</a></li>
@@ -37,7 +37,7 @@
       <script src="script.js"></script>
       <main>
         <section>
-          <button onclick="goBack()">Back</button>
+          <button class="back-button" onclick="goBack()">Back</button>
           <h1>Audi A6</h1>
           <div class="boxed-text">
             <p>Looking for a classic luxury car that's both stylish and practical? Look no further than this stunning Audi A6 from 1994!</p>

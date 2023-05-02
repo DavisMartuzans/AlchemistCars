@@ -38,7 +38,7 @@
   <div class="form-container">
   	<div class="container">
       <h1>Sell Your Car</h1>
-      <form class="sellcars" action="sell.php" method="post">
+      <form class="sellcars" action="process_sell_form.php" method="post">
         <label for="make">Make:</label>
         <input type="text" id="make" name="make" required>
   
