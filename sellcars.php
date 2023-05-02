@@ -13,7 +13,8 @@
   <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
   <nav>
     <ul>
-      <li><a href="main.php">Home</a></li>
+    <li><a href="main.php">Home</a></li>
+      <li><a href="parts.php">Parts</a></li>
       <li><a href="sellcars.php">Sell Your Car</a></li>
       <li><a href="contact.php">Contact</a></li>
       <li><a href="leasing.php">Leasing</a></li>

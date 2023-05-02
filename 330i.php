@@ -51,6 +51,7 @@
           <img src="Components/bmwe46.jpg" class="car-image" alt="BMW 330i 2002">
         </div>
         <button class="price-button">€5000</button>
+        <button class="rent"><a href="rent.php">Rent</a></button>
       </main>
 </body>
 </html>

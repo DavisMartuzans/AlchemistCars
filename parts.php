@@ -35,57 +35,84 @@
 </header>
 <script type="text/javascript" src="script.js"></script>
 <body>
-    <form method="get">
-        <label for="make">Make:</label>
-        <select name="make" id="make">
-          <option value="bmw">BMW</option>
-          <option value="mercedes">Mercedes-Benz</option>
-          <option value="audi">Audi</option>
-        </select>
-        <label for="model">Model:</label>
-        <select type="submit" id="model">
-          <option value="330i">330i</option>
-          <option value="e200">E200</option>
-          <option value="a6">A6</option>
-        </select>
-        <label for="year">Year:</label>
-        <select name="year" id="year">
-          <option value="2002">2002</option>
-          <option value="1994">1994</option>
-        </select>
-        <br><br>
-        <input type="submit" name="submit" value="Filter">
-      </form>
-      <section>
-        <div class="card">
-          <img src="#" alt="Part 1" style="width:100%">
-          <h3>BMW 330i</h3>
-          <p class="title">Make: BMW</p>
-          <p>Model: 330i</p>
-          <p>Year: 2002</p>
-          <p>Price: €5000</p>
-          <a href="Cars/330i.php"><button>Learn More</button></a>
-        </div>
-        <div class="card">
-          <img src="#" alt="Part 2" style="width:100%">
-          <h3>Audi A6 C4</h3>
-          <p class="title">Make: Audi</p>
-          <p>Model: A6</p>
-          <p>Year: 1994</p>
-          <p>Price: €3000</p>
-          <a href="/Cars/A6.php"><button>Learn More</button></a>
-        </div>
-        <div class="card">
-          <img src="Components/w210frontbumper.jpg" alt="part 3" style="width:100%">
-          <h3>Front Bumper</h3>
-          <p class="title">Make: Mercedes-Benz</p>
-          <p>Model: E200</p>
-          <p>Year: 2002</p>
-          <p>Price: €150</p>
-          <br>
-          <a href="/Cars/E200.php"><button>Learn More</button></a>
-        </div>
-      </section>
-<script type="text/javascript" src="cars.php"></script>
+<label for="make">Make:</label>
+    <select id="make">
+      <option value="all">All</option>
+      <option value="Mercedes-Benz">Mercedes-Benz</option>
+      <option value="Audi">Audi</option>
+      <option value="BMW">BMW</option>
+    </select>
+    
+    <label for="model">Model:</label>
+    <select id="model">
+      <option value="all">All</option>
+      <option value="E200">E200</option>
+      <option value="A6">A6</option>
+      <option value="330i">330i</option>
+    </select>
+    
+    <label for="year">Year:</label>
+    <select id="year">
+      <option value="all">All</option>
+      <option value="2002">2002</option>
+      <option value="1994">1994</option>
+    </select>
+    
+    <button id="filterButton">Filter</button>
+    
+    <ul id="carList">
+    <div class="card">
+        <img src="Components/Axel.jpg" alt="Part 1" style="width:100%">
+        <h3>Axle Shaft - Right Rear</h3>
+        <p class="title">Make: BMW</p>
+        <p>Model: 330i</p>
+        <p>Year: 2002</p>
+        <p>Price: €700</p>
+        <a href="330i.php"><button>Learn More</button></a>
+      </div>
+      <div class="card">
+        <img src="Components/c4headlights.jpg" alt="Part 2" style="width:100%">
+        <h3>Front Headlights</h3>
+        <p class="title">Make: Audi</p>
+        <p>Model: A6</p>
+        <p>Year: 1994</p>
+        <p>Price: €50</p>
+        <a href="A6.php"><button>Learn More</button></a>
+      </div>
+      <div class="card">
+        <img src="Components/w210frontbumper.jpg" alt="Part 3" style="width:100%">
+        <h3>Front Bumper</h3>
+        <p class="title">Make: Mercedes-Benz</p>
+        <p>Model: E200</p>
+        <p>Year: 2002</p>
+        <p>Price: €200</p>
+        <a href="E200.php"><button>Learn More</button></a>
+      </div>
+    </ul>
+  <script>
+  const filterButton = document.querySelector("#filterButton");
+const carList = document.querySelector("#carList");
+
+filterButton.addEventListener("click", () => {
+  const make = document.querySelector("#make").value;
+  const model = document.querySelector("#model").value;
+  const year = document.querySelector("#year").value;
+
+  // Loop through each car in the list
+  for (let i = 0; i < carList.children.length; i++) {
+    const car = carList.children[i];
+    const carMake = car.querySelector(".title").textContent.split(": ")[1];
+    const carModel = car.querySelector("p:nth-of-type(2)").textContent.split(": ")[1];
+    const carYear = car.querySelector("p:nth-of-type(3)").textContent.split(": ")[1];
+
+    // Hide the car if it doesn't match the selected filter
+    if ((make === "all" || carMake === make) && (model === "all" || carModel === model) && (year === "all" || carYear === year)) {
+      car.style.display = "";
+    } else {
+      car.style.display = "none";
+    }
+  }
+});
+</script>
 </body>
 </html>

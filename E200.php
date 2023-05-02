@@ -51,6 +51,7 @@
           <img src="Components/w210.jpeg" class="car-image" alt="Mercedes-Benz E200 2002">
         </div>
         <button class="price-button">€2500</button>
+        <button class="rent"><a href="rent.php">Rent</a></button>
       </main>
 </body>
 </html>
