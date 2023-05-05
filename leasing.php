@@ -15,23 +15,10 @@
             <li><a href="sellcars.php">Sell Your Car</a></li>
             <li><a href="contact.php">Contact</a></li>
             <li><a href="leasing.php">Leasing</a></li>
-            <li><a id="open-form" >Sign In</a></li>
+            <li><a href="signin.php" >Sign In</a></li>
           </ul>
         </nav>
       </header>
-      <div id="form-container">
-        <div class="form-header">
-          <h2>Sign In</h2>
-          <button id="close-form">X</button>
-        </div>
-        <form>
-          <input type="text" placeholder="Email">
-          <input type="password" placeholder="Password">
-          <button>Confirm!</button>
-        </form>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
-      </div>
-
       <section id="leasing">
   <div class="container">
     <h1>Leasing Options</h1>
@@ -122,6 +109,5 @@ if (isset($_POST['submit'])) {
   exit();
 }
 ?>
-    <script src="script.js"></script>
   </body>
 </html>

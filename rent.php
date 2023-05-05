@@ -17,24 +17,10 @@
       <li><a href="sellcars.php">Sell Your Car</a></li>
       <li><a href="contact.php">Contact</a></li>
       <li><a href="leasing.php">Leasing</a></li>
-      <li><a id="open-form" >Sign In</a></li>
+      <li><a href="signin.php" >Sign In</a></li>
     </ul>
   </nav>
-<div id="form-container">
-  <div class="form-header">
-    <h2>Sign In</h2>
-    <button id="close-form">X</button>
-  </div>
-  <form>
-    <input type="text" placeholder="Email">
-    <input type="password" placeholder="Password">
-    <button>Confirm!</button>
-  </form>
-  <p>Don't have an account? <a href="#">Sign up</a></p>
-</div>
 </header>
-<script type="text/javascript" src="script.js"></script>
-
 <body>
 	<form action="rent.php" method="post">
 		<label for="car">Select a Car:</label>

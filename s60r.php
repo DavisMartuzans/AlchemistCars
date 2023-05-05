@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMW 330i</title>
+    <title>Volvo S60R</title>
     <link rel="stylesheet" href="cars.css">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
@@ -34,7 +34,7 @@
         </div>
         </section>
         <div>
-          <img src="Components/bmwe46.jpg" class="car-image" alt="BMW 330i 2002">
+          <img src="Components/volvos60.jpg" class="car-image" alt="BMW 330i 2002">
         </div>
         <button class="price-button">€5000</button>
         <button class="rent"><a href="rent.php">Rent</a></button>

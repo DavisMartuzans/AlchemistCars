@@ -17,29 +17,14 @@
       <li><a href="sellcars.php">Sell Your Car</a></li>
       <li><a href="contact.php">Contact</a></li>
       <li><a href="leasing.php">Leasing</a></li>
-      <li><a id="open-form" >Sign In</a></li>
+      <li><a href="signin.php" >Sign In</a></li>
     </ul>
   </nav>
-<div id="form-container">
-  <div class="form-header">
-    <h2>Sign In</h2>
-    <button id="close-form">X</button>
-  </div>
-  <form>
-    <input type="text" placeholder="Email">
-    <input type="password" placeholder="Password">
-    <button>Confirm!</button>
-  </form>
-  <p>Don't have an account? <a href="signup.php">Sign up</a></p>
-</div>
 </header>
-<script type="text/javascript" src="script.js"></script>
-
 <body>
     <h2 class="welcome">Welcome to AlchemistCars</h2>
     <p class="about">Here you can find a variety of awesome cars. </p>
     <p class="about">If you find anything you like, contact us and meet us</p>
-    
     <label for="make">Make:</label>
     <select id="make">
       <option value="all">All</option>
@@ -112,7 +97,7 @@
         <p>Year: 2005</p>
         <p>Price: €12000</p>
         <br>
-        <a href="#"><button>Learn More</button></a>
+        <a href="s60r.php"><button>Learn More</button></a>
       </div>
       <div class="card">
         <img src="Components/mazdamx5.jpg" alt="Car 5" style="width:100%">
@@ -122,7 +107,7 @@
         <p>Year: 1993</p>
         <p>Price: €15200</p>
         <br>
-        <a href="#"><button>Learn More</button></a>
+        <a href="mx5.php"><button>Learn More</button></a>
       </div>
       <div class="card">
         <img src="Components/W211.jpg" alt="Car 6" style="width:100%">
@@ -132,7 +117,7 @@
         <p>Year: 2006</p>
         <p>Price: €11000</p>
         <br>
-        <a href="#"><button>Learn More</button></a>
+        <a href="e63.php"><button>Learn More</button></a>
       </div>
     </ul>
 <script>

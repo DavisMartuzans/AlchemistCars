@@ -17,40 +17,51 @@
       <li><a href="sellcars.php">Sell Your Car</a></li>
       <li><a href="contact.php">Contact</a></li>
       <li><a href="leasing.php">Leasing</a></li>
-      <li><a id="open-form" >Sign In</a></li>
+      <li><a href="signin.php" >Sign In</a></li>
     </ul>
   </nav>
 <body>
-<form action="signup.php" method="post">
+<form action="signup.php" method="POST">
+  <label for="username">Username:</label>
+  <input type="text" name="username" id="username" required>
+
   <label for="email">Email:</label>
-  <input type="email" id="email" name="email">
-  
+  <input type="email" name="email" id="email" required>
+
+  <label for="full_name">Full Name:</label>
+  <input type="text" name="full_name" id="full_name" required>
+
   <label for="password">Password:</label>
-  <input type="password" id="password" name="password">
-  
-  <input type="submit" value="Sign In">
+  <input type="password" name="password" id="password" required>
+
+  <input type="submit" value="Sign Up">
 </form>
+
+
 <?php
-session_start();
-require_once 'config.php';
+// Get the user's input from the form
+$username = $_POST['username'];
+$password = $_POST['password'];
 
-if (isset($_POST['signup'])) {
-	$username = $_POST['username'];
-	$email = $_POST['email'];
-	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+// Hash the password using bcrypt
+$password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-	$sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+require_once('db_credentials.php');
 
-	if (mysqli_query($conn, $sql)) {
-		$_SESSION['success'] = 'Account created successfully';
-		header('Location: index.php');
-	} else {
-		$_SESSION['error'] = 'Error: ' . mysqli_error($conn);
-		header('Location: signup.php');
-	}
+// Insert the user's information into the users table
+$sql = "INSERT INTO users (username, password) VALUES ('$username', '$password_hash')";
+if ($conn->query($sql) === TRUE) {
+  // Start a session and redirect to the logged-in page
+  session_start();
+  $_SESSION['username'] = $username;
+  header('Location: signedin.php');
+} else {
+  // Display an error message if the username is already taken
+  echo "Username already taken";
 }
 
-mysqli_close($conn);
+// Close the database connection
+$conn->close();
 ?>
 
 </body>

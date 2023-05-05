@@ -18,26 +18,12 @@
             <li><a href="sellcars.php">Sell Your Car</a></li>
             <li><a href="contact.php">Contact</a></li>
             <li><a href="leasing.php">Leasing</a></li>
-            <li><a id="open-form" >Sign In</a></li>
+            <li><a href="signin.php" >Sign In</a></li>
           </ul>
         </nav>
       </header>
-      <div id="form-container">
-        <div class="form-header">
-          <h2>Sign In</h2>
-          <button id="close-form">X</button>
-        </div>
-        <form>
-          <input type="text" placeholder="Email">
-          <input type="password" placeholder="Password">
-          <button>Confirm!</button>
-        </form>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
-      </div>
-      <script src="script.js"></script>
       <main>
         <section>
-          <button class="back-button" onclick="goBack()">Back</button>
           <h1>Audi A6</h1>
           <div class="boxed-text">
             <p>Looking for a classic luxury car that's both stylish and practical? Look no further than this stunning Audi A6 from 1994!</p>
