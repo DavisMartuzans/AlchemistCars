@@ -23,8 +23,8 @@
   </nav>
   
 </header>
-  <div class="form-container">
-  	<div class="container">
+  <div class="selling-form">
+  	<div class="selling-container">
       <h1>Sell Your Car</h1>
       <form class="sellcars" action="process_sell_form.php" method="post">
         <label for="make">Make:</label>
@@ -45,7 +45,7 @@
         <label for="contact">Contact Information:</label>
         <textarea id="contact" name="contact" required></textarea>
   
-        <input type="submit" value="Submit">
+        <input class="filterButton type="submit" value="Submit">
       </form>
     </div>
 <body>

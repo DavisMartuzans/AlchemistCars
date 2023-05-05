@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>AlchemistCars</title>
-  <link href="better.css" rel="stylesheet" type="text/css" />
+  <title>Sign in</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <header>
@@ -20,15 +20,17 @@
       <li><a href="signin.php" >Sign In</a></li>
     </ul>
   </nav>
+</header>
 <body>
 <form action="signin.php" method="post" id="signin-form">
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required>
+  <label class="username" for="username">Username:</label>
+  <input class="username" type="text" id="username" name="username" required>
 
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required>
+  <label class="password" for="password">Password:</label>
+  <input class="password" type="password" id="password" name="password" required>
 
-  <input type="submit" value="Sign In">
+  <input class="signin" type="submit" value="Sign In">
+  <a href="signup.php">I dont have kont debil</a>
 </form>
 
 <?php

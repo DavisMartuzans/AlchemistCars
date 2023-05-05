@@ -21,8 +21,9 @@
     </ul>
   </nav>
 </header>
-<script type="text/javascript" src="script.js"></script>
 <body>
+  <h2 class="welcome">Welcome to the parts page</h2>
+<div class="car-filter">
 <label for="make">Make:</label>
     <select id="make">
       <option value="all">All</option>
@@ -45,9 +46,9 @@
       <option value="2002">2002</option>
       <option value="1994">1994</option>
     </select>
-    
-    <button id="filterButton">Filter</button>
-    
+
+    <button class="filterButton id="filterButton">Filter</button>
+</div>    
     <ul id="carList">
     <div class="card">
         <img src="Components/Axel.jpg" alt="Part 1" style="width:100%">
@@ -56,7 +57,7 @@
         <p>Model: 330i</p>
         <p>Year: 2002</p>
         <p>Price: €700</p>
-        <a href="330i.php"><button>Learn More</button></a>
+        <a href="330i.php"><button class="learn-more">Learn More</button></a>
       </div>
       <div class="card">
         <img src="Components/c4headlights.jpg" alt="Part 2" style="width:100%">
@@ -65,7 +66,7 @@
         <p>Model: A6</p>
         <p>Year: 1994</p>
         <p>Price: €50</p>
-        <a href="A6.php"><button>Learn More</button></a>
+        <a href="A6.php"><button class="learn-more">Learn More</button></a>
       </div>
       <div class="card">
         <img src="Components/w210frontbumper.jpg" alt="Part 3" style="width:100%">
@@ -74,7 +75,16 @@
         <p>Model: E200</p>
         <p>Year: 2002</p>
         <p>Price: €200</p>
-        <a href="E200.php"><button>Learn More</button></a>
+        <a href="E200.php"><button class="learn-more">Learn More</button></a>
+      </div>
+      <div class="card">
+        <img src="Components\mx5headlights.jpg" alt="Part 4" style="width:100%">
+        <h3>Front Headlights</h3>
+        <p class="title">Make: Mazda</p>
+        <p>Model: MX5</p>
+        <p>Year: 1993</p>
+        <p>Price: €140</p>
+        <a href="mx5.php"><button class="learn-more">Learn More</button></a>
       </div>
     </ul>
   <script>

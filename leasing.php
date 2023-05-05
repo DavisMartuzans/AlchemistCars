@@ -23,7 +23,7 @@
   <div class="container">
     <h1>Leasing Options</h1>
     
-    <form id="leasing-form" method="post">
+    <form class="leasing-form" id="leasing-form" method="post">
       <label for="make">Make:</label>
       <select id="make" name="make">
         <option value="">Select Make</option>
@@ -80,7 +80,7 @@
         <option value="60">60 Months</option>
       </select>
       
-      <button type="submit" name="submit">Search</button>
+      <button class="filterButton type="submit" name="submit">Submit</button>
     </form>
   </div>
 </section>

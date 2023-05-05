@@ -25,6 +25,7 @@
     <h2 class="welcome">Welcome to AlchemistCars</h2>
     <p class="about">Here you can find a variety of awesome cars. </p>
     <p class="about">If you find anything you like, contact us and meet us</p>
+  <div class="car-filter">
     <label for="make">Make:</label>
     <select id="make">
       <option value="all">All</option>
@@ -56,8 +57,8 @@
       <option value="2006">2006</option>
     </select>
     
-    <button id="filterButton">Filter</button>
-    
+    <button class="filterButton" id="filterButton">Filter</button>
+  </div>
     <ul id="carList">
     <div class="card">
         <img src="Components/bmwe46.jpg" alt="Car 1" style="width:100%">
@@ -66,8 +67,7 @@
         <p>Model: 330i</p>
         <p>Year: 2002</p>
         <p>Price: €5000</p>
-        <br>
-        <a href="330i.php"><button>Learn More</button></a>
+        <a href="330i.php"><button class="learn-more">Learn More</button></a>
       </div>
       <div class="card">
         <img src="Components/audia6c4.jpg" alt="Car 2" style="width:100%">
@@ -76,8 +76,7 @@
         <p>Model: A6</p>
         <p>Year: 1994</p>
         <p>Price: €3000</p>
-        <br>
-        <a href="A6.php"><button>Learn More</button></a>
+        <a href="A6.php"><button class="learn-more">Learn More</button></a>
       </div>
       <div class="card">
         <img src="Components/w210.jpeg" alt="Car 3" style="width:100%">
@@ -86,8 +85,7 @@
         <p>Model: E200</p>
         <p>Year: 2002</p>
         <p>Price: €2500</p>
-        <br>
-        <a href="E200.php"><button>Learn More</button></a>
+        <a href="E200.php"><button class="learn-more">Learn More</button></a>
       </div>
       <div class="card">
         <img src="Components/volvos60.jpg" alt="Car 4" style="width:100%">
@@ -96,8 +94,7 @@
         <p>Model: S60R</p>
         <p>Year: 2005</p>
         <p>Price: €12000</p>
-        <br>
-        <a href="s60r.php"><button>Learn More</button></a>
+        <a href="s60r.php"><button class="learn-more">Learn More</button></a>
       </div>
       <div class="card">
         <img src="Components/mazdamx5.jpg" alt="Car 5" style="width:100%">
@@ -106,8 +103,7 @@
         <p>Model: MX5</p>
         <p>Year: 1993</p>
         <p>Price: €15200</p>
-        <br>
-        <a href="mx5.php"><button>Learn More</button></a>
+        <a href="mx5.php"><button class="learn-more">Learn More</button></a>
       </div>
       <div class="card">
         <img src="Components/W211.jpg" alt="Car 6" style="width:100%">
@@ -116,8 +112,7 @@
         <p>Model: E63</p>
         <p>Year: 2006</p>
         <p>Price: €11000</p>
-        <br>
-        <a href="e63.php"><button>Learn More</button></a>
+        <a href="e63.php"><button class="learn-more">Learn More</button></a>
       </div>
     </ul>
 <script>

@@ -22,7 +22,7 @@
   </nav>
 </header>
 <body>
-  <div class="container">
+  <div class="contact-container">
     <div class="text-container">
       <h1>Contact Us</h1>
       <p>Phone: +371 25577052</p>
