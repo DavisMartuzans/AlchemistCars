@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercedes-Benz E63</title>
-    <link rel="stylesheet" href="cars.css">
+    <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <body>
@@ -25,19 +25,19 @@
       </header>
       <main>
         <section>
-          <h1>BMW 330i</h1>
+          <h1>Mercedes-Benz E63</h1>
          <div class="boxed-text">
-          <p>Looking for a dynamic and luxurious ride? Look no further than this stunning BMW 330i from 2002!<br>This sleek and stylish sedan boasts a powerful 3.0-liter inline six-cylinder engine that delivers smooth<br> and responsive performance, making it a joy to drive in any situation.</p>
-          <p>Step inside and you'll be greeted by a spacious and comfortable interior, complete with premium leather<br> seats, high-quality materials, and a host of advanced features that make every journey a pleasure. With<br> its advanced audio system, climate control, and power accessories, you'll feel right at home behind the<br> wheel of this impressive vehicle.</p>
-          <p>But it's not just about comfort and convenience - the BMW 330i also offers exceptional handling and<br> precision, thanks to its advanced suspension system, responsive steering, and powerful brakes. Whether<br> you're cruising down the highway or taking on tight curves, this car delivers a smooth and engaging<br> driving experience that is second to none.</p>
-          <p>So if you're looking for a car that combines style, performance, and luxury, look no further than this<br> stunning BMW 330i from 2002. With its impressive features and exceptional performance, it's sure<br> to turn heads and provide an unforgettable driving experience. Don't miss out on this opportunity <br>come see it for yourself today!</p>
+          <p>The Mercedes Benz E63 AMG is a high-performance luxury sedan that was first introduced in 2006.</p>
+          <p>Engine: The E63 AMG is powered by a 6.2-liter V8 engine that produces 507 horsepower and 465 lb-ft of torque. This engine is paired with a seven-speed automatic transmission and can accelerate from 0 to 60 mph in just 4.3 seconds.</p>
+          <p>Design: The E63 AMG has a sleek, aerodynamic design that sets it apart from other luxury sedans. The car features a sporty front grille, aggressive air intakes, and 19-inch alloy wheels.</p>
+          <p>Overall, the Mercedes Benz E63 AMG is a powerful and luxurious sedan that offers exceptional performance, comfort, and safety. It is a great choice for drivers who want a high-performance vehicle that also provides a premium driving experience.</p> 
         </div>
         </section>
         <div>
-          <img src="Components/w211.jpg" class="car-image" alt="BMW 330i 2002">
+          <img src="Components/w211.jpg" class="car-image" alt="Mercedes-Benz E63 2006">
         </div>
-        <button class="price-button">€5000</button>
-        <button class="rent"><a href="rent.php">Rent</a></button>
+        <button class="price-button">€6700</button>
+        <a href="rent.php"><button class="rent">Rent</button></a>
       </main>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volvo S60R</title>
-    <link rel="stylesheet" href="cars.css">
+    <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <body>
@@ -25,16 +25,16 @@
       </header>
       <main>
         <section>
-          <h1>BMW 330i</h1>
+          <h1>Volvo S60R</h1>
          <div class="boxed-text">
-          <p>Looking for a dynamic and luxurious ride? Look no further than this stunning BMW 330i from 2002!<br>This sleek and stylish sedan boasts a powerful 3.0-liter inline six-cylinder engine that delivers smooth<br> and responsive performance, making it a joy to drive in any situation.</p>
-          <p>Step inside and you'll be greeted by a spacious and comfortable interior, complete with premium leather<br> seats, high-quality materials, and a host of advanced features that make every journey a pleasure. With<br> its advanced audio system, climate control, and power accessories, you'll feel right at home behind the<br> wheel of this impressive vehicle.</p>
-          <p>But it's not just about comfort and convenience - the BMW 330i also offers exceptional handling and<br> precision, thanks to its advanced suspension system, responsive steering, and powerful brakes. Whether<br> you're cruising down the highway or taking on tight curves, this car delivers a smooth and engaging<br> driving experience that is second to none.</p>
-          <p>So if you're looking for a car that combines style, performance, and luxury, look no further than this<br> stunning BMW 330i from 2002. With its impressive features and exceptional performance, it's sure<br> to turn heads and provide an unforgettable driving experience. Don't miss out on this opportunity <br>come see it for yourself today!</p>
+          <p>The Volvo S60R is a high-performance luxury sedan that was first introduced in 2003.</p>
+          <p>Engine: The S60R is powered by a 2.5-liter turbocharged inline-five engine that produces 300 horsepower and 295 lb-ft of torque. This engine is paired with a six-speed manual transmission and can accelerate from 0 to 60 mph in just 5.4 seconds.</p>
+          <p>Design: The S60R has a sleek and modern design that sets it apart from other luxury sedans. The car features a sporty front grille, aggressive air intakes, and 18-inch alloy wheels. The 2005 model also has a subtle rear spoiler, which adds to its sporty look.</p>
+          <p>Overall, the Volvo S60R is a powerful and luxurious sedan that offers exceptional performance, comfort, and safety. It is a great choice for drivers who want a high-performance vehicle that also provides a premium driving experience.</p>
         </div>
         </section>
         <div>
-          <img src="Components/volvos60.jpg" class="car-image" alt="BMW 330i 2002">
+          <img src="Components/volvos60.jpg" class="car-image" alt="Volvo S60R 2005">
         </div>
         <button class="price-button">€5000</button>
         <button class="rent"><a href="rent.php">Rent</a></button>

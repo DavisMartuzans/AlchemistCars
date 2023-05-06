@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>AlchemistCars</title>
+  <title>Parts</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
@@ -30,6 +30,7 @@
       <option value="Mercedes-Benz">Mercedes-Benz</option>
       <option value="Audi">Audi</option>
       <option value="BMW">BMW</option>
+      <option value="Mazda">Mazda</option>
     </select>
     
     <label for="model">Model:</label>
@@ -38,16 +39,18 @@
       <option value="E200">E200</option>
       <option value="A6">A6</option>
       <option value="330i">330i</option>
+      <option value="MX5">MX5</option>
     </select>
     
     <label for="year">Year:</label>
     <select id="year">
       <option value="all">All</option>
       <option value="2002">2002</option>
+      <option value="1993">1993</option>
       <option value="1994">1994</option>
     </select>
 
-    <button class="filterButton id="filterButton">Filter</button>
+    <button class="filterButton" id="filterButton">Filter</button>
 </div>    
     <ul id="carList">
     <div class="card">

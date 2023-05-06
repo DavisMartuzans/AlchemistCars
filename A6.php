@@ -34,7 +34,7 @@
           </div>
         </section>
         <div>
-          <img src="Components/audia6c4.jpg" class="car-image" alt="BMW 330i 2002">
+          <img src="Components/audia6c4.jpg" class="car-image" alt="Audi A6 1994">
         </div>
         <button class="price-button">€3000</button>
         <button class="rent"><a href="rent.php">Rent</a></button>
