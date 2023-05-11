@@ -22,48 +22,54 @@
   </nav>
 </header>
 <body>
-<form action="signin.php" method="post" id="signin-form">
-  <label class="username" for="username">Username:</label>
-  <input class="username" type="text" id="username" name="username" required>
+<form method="POST" action="signin.php">
+	<label for="username">Username:</label>
+	<input type="text" id="username" name="username"><br>
 
-  <label class="password" for="password">Password:</label>
-  <input class="password" type="password" id="password" name="password" required>
+	<label for="password">Password:</label>
+	<input type="password" id="password" name="password"><br>
 
-  <input class="signin" type="submit" value="Sign In">
-  <a href="signup.php">I dont have kont debil</a>
+	<label for="user_type">User type:</label>
+	<select id="user_type" name="user_type">
+		<option value="user">User</option>
+		<option value="admin">Admin</option>
+	</select><br>
+
+	<input type="submit" value="Sign in">
+  <a href="signup.php">Don't have a account!</a>
 </form>
-
-<?php
-// Get the user's input from the form
-$username = $_POST['username'];
-$password = $_POST['password'];
+  <?php
 
 require_once('db_credentials.php');
 
-// Retrieve the user's password hash from the users table
-$sql = "SELECT password FROM users WHERE username='$username'";
+// Get form data
+$username = $_POST["username"];
+$password = $_POST["password"];
+$user_type = $_POST["user_type"];
+
+// Prepare SQL statement
+$sql = "SELECT * FROM users WHERE username='$username' AND password='$password' AND user_type='$user_type'";
+
+// Execute SQL statement
 $result = $conn->query($sql);
 
-if ($result->num_rows == 1) {
-  // Verify the password hash
-  $row = $result->fetch_assoc();
-  if (password_verify($password, $row['password'])) {
-    // Start a session and redirect to the logged-in page
-    session_start();
-    $_SESSION['username'] = $username;
-    header('Location: loggedin.php');
-  } else {
-    // Display an error message if the password is incorrect
-    echo "Incorrect password";
-  }
+// Check if user exists
+if ($result->num_rows > 0) {
+	// User exists, redirect to dashboard
+	if ($user_type == "admin") {
+		header("Location: admin_dashboard.php");
+	} else {
+		header("Location: user_dashboard.php");
+	}
 } else {
-  // Display an error message if the username is not found
-  echo "Username not found";
+	// User doesn't exist, show error message
+	echo "Invalid username or password.";
 }
 
-// Close the database connection
+// Close database connection
 $conn->close();
 ?>
+
 
 </body>
 </html>

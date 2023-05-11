@@ -41,22 +41,24 @@
 		<br><br>
 		<input type="submit" value="Submit">
 	</form>
-<?php
-$car = $_POST['car'];
-$pickup_date = $_POST['pickup_date'];
-$return_date = $_POST['return_date'];
+  <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $car = $_POST['car'];
+  $pickup_date = $_POST['pickup_date'];
+  $return_date = $_POST['return_date'];
 
-require_once('db_credentials.php');
+  require_once('db_credentials.php');
 
-$sql = "INSERT INTO car_rentals (car, pickup_date, return_date)
-VALUES ('$car', '$pickup_date', '$return_date')";
+  $sql = "INSERT INTO car_rentals (car, pickup_date, return_date)
+  VALUES ('$car', '$pickup_date', '$return_date')";
 
-if ($conn->query($sql) === TRUE) {
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  if ($conn->query($sql) === TRUE) {
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+
+  $conn->close();
 }
-
-$conn->close();
 ?>
 
 </body>
