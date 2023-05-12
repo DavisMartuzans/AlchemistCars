@@ -65,7 +65,7 @@
         <option value="">Select Year</option>
         <option value="1993">1993</option>
         <option value="1994">1994</option>
-        <option value="2022">2002</option>
+        <option value="2002">2002</option>
         <option value="2005">2005</option>
         <option value="2006">2006</option>
       </select>
