@@ -7,6 +7,19 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
+<header>
+  <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
+  <nav>
+    <ul>
+      <li><a href="main.php">Home</a></li>
+      <li><a href="parts.php">Parts</a></li>  
+      <li><a href="sellcars.php">Sell Your Car</a></li>
+      <li><a href="contact.php">Contact</a></li>
+      <li><a href="leasing.php">Leasing</a></li>
+      <li><a href="signin.php" >Sign In</a></li>
+    </ul>
+  </nav>
+</header>
 <body>
   <h1>Sign Up</h1>
   <form method="POST" action="signup.php">
