@@ -1,19 +1,20 @@
 <?php
-session_start();
 require_once('db_credentials.php');
+
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $myname = $_POST['name'];
   $myemail = $_POST['email'];
   $mypassword = $_POST['password'];
 
-  // Validate user input
+  // Validates user input
   if (!filter_var($myemail, FILTER_VALIDATE_EMAIL)) {
     $error = "Please enter a valid email address.";
   } elseif (empty($myname) || empty($myemail) || empty($mypassword)) {
     $error = "Please enter your name, email, and password.";
   } else {
-    // Check if email already exists
+    // Checks if email already exists
     $chk_query = "SELECT * FROM users WHERE email = ?";
     $stmt = mysqli_prepare($db, $chk_query);
     mysqli_stmt_bind_param($stmt, "s", $myemail);
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
       $error = "Error: Email already exists in the database.";
     } else {
-      // Insert user data into the database
+      // Inserts user data into the database
       $insert_query = "INSERT INTO users (name, email, password, admin) VALUES (?, ?, ?, 0)";
       $stmt = mysqli_prepare($db, $insert_query);
       $hashed_password = password_hash($mypassword, PASSWORD_DEFAULT);
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Register</title>
+	<title>Sign Up</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,6 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </header>
 <body>
   <div class="center-form">
+
+
+
+
+
 	<form action="" method="post">
     <label for="name">Name:</label><br>
 		<input type="name" name="name" class = "box"><br>
