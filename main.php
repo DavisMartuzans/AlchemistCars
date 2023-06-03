@@ -217,20 +217,20 @@ function filterCars() {
 
 .car-filter input[type="submit"] {
   flex-basis: 100%;
-  background-color: #007bff;
+  background-color: #454545;
   color: #fff;
   border: none;
   cursor: pointer;
 }
 
 .car-filter input[type="submit"]:hover {
-  background-color: #0069d9;
+  background-color: #454545;
 }
 
 .filterButton{
   width: 100%;
   padding: 10px;
-  background-color: #333;
+  background-color: #454545;
   color: white;
   font-size: 16px;
   border: none;
@@ -238,7 +238,7 @@ function filterCars() {
 }
 
 .filterButton:hover {
-  background-color: #444;
+  background-color: #000;
 }
 
 /* car cards */
@@ -271,15 +271,32 @@ function filterCars() {
 .learn-more{
   width: 100%;
   padding: 10px;
-  background-color: #333;
+  background-color: #454545;
   color: white;
   font-size: 16px;
   border: none;
   cursor: pointer;
 }
 .learn-more:hover {
-  background-color: #444;
+  background-color: #000;
 }
 </style>
 </body>
 </html>
+<?php
+// Assuming you have a database connection, retrieve the car data from the database
+
+// Iterate through the car data and generate HTML for each car listing
+while ($row = mysqli_fetch_assoc($result)) {
+  // Generate HTML markup for the car listing using the retrieved data
+  echo '<div class="card">';
+  echo '<img src="' . $row['image'] . '" alt="Car" style="width:100%">';
+  echo '<h3>' . $row['make'] . ' ' . $row['model'] . '</h3>';
+  echo '<p class="title">Make: ' . $row['make'] . '</p>';
+  echo '<p>Model: ' . $row['model'] . '</p>';
+  echo '<p>Year: ' . $row['year'] . '</p>';
+  echo '<p>Price: €' . $row['price'] . '</p>';
+  echo '<a href="details.php?id=' . $row['id'] . '"><button class="learn-more">Learn More</button></a>';
+  echo '</div>';
+}
+?>

@@ -17,8 +17,44 @@ $email = $_SESSION['email'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if the password change form was submitted
     if (isset($_POST['current-password']) && isset($_POST['new-password']) && isset($_POST['confirm-password'])) {
-        // Process the password change logic here
-        // ...
+        $currentPassword = $_POST['current-password'];
+        $newPassword = $_POST['new-password'];
+        $confirmPassword = $_POST['confirm-password'];
+
+        // Retrieve the user's current password from the database
+        $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->bind_result($hashedPassword);
+        $stmt->fetch();
+        $stmt->close();
+
+        // Verify if the current password is correct
+        if (password_verify($currentPassword, $hashedPassword)) {
+            // Verify if the new password and confirm password match
+            if ($newPassword === $confirmPassword) {
+                // Hash the new password
+                $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+                // Update the user's password in the database
+                $stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
+                $stmt->bind_param("ss", $newHashedPassword, $username);
+                $stmt->execute();
+                $stmt->close();
+
+                // Redirect to the account page with a success message
+                header("Location: account.php?password_changed=1");
+                exit();
+            } else {
+                // Redirect to the account page with an error message
+                header("Location: account.php?error=password_mismatch");
+                exit();
+            }
+        } else {
+            // Redirect to the account page with an error message
+            header("Location: account.php?error=invalid_password");
+            exit();
+        }
     }
 
     // Check if the delete account form was submitted
