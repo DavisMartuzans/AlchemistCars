@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -17,14 +21,34 @@
       <li><a href="sellcars.php">Sell Your Car</a></li>
       <li><a href="contact.php">Contact</a></li>
       <li><a href="leasing.php">Leasing</a></li>
-      <li><a href="signin.php" >Sign In</a></li>
+      <?php
+      if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+          // Additional links for signed-in users
+          echo '<li><a href="account.php">Account</a></li>';
+          echo '<li><a href="logout.php">Log Out</a></li>';
+      } else {
+          // Sign in link for non-logged-in users
+          echo '<li><a href="signin.php">Sign In</a></li>';
+      }
+      ?>
     </ul>
   </nav>
 </header>
 <body>
-    <h2 class="welcome">Welcome to AlchemistCars</h2>
-    <p class="about">Here you can find a variety of awesome cars. </p>
-    <p class="about">If you find anything you like, contact us and meet us</p>
+  <h2 class="welcome">Welcome to AlchemistCars</h2>
+  <?php
+  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+      // Display additional features for signed-in users
+      echo '<p class="about">You are logged in as ' . $_SESSION['username'] . '</p>';
+      echo '<p class="about">Here you can find a variety of awesome cars.</p>';
+      echo '<p class="about">If you find anything you like, contact us and meet us.</p>';
+      // Display additional content or features for logged-in users
+  } else {
+      // Show generic content for non-logged-in users
+      echo '<p class="about">Here you can find a variety of awesome cars.</p>';
+      echo '<p class="about">If you find anything you like, please sign in to access additional features.</p>';
+  }
+  ?>
   <div class="car-filter">
     <label for="make">Make:</label>
     <select id="make">

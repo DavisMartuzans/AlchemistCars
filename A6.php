@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audi A6</title>
-    <link rel="stylesheet" href="cars.css">
+    <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <body>
@@ -18,7 +22,15 @@
             <li><a href="sellcars.php">Sell Your Car</a></li>
             <li><a href="contact.php">Contact</a></li>
             <li><a href="leasing.php">Leasing</a></li>
-            <li><a href="signin.php" >Sign In</a></li>
+            <?php
+            if(isset($_SESSION['username'])) {
+                // User is signed in
+                echo '<li><a href="logout.php">Logout</a></li>';
+            } else {
+                // User is not signed in
+                echo '<li><a href="signin.php">Sign In</a></li>';
+            }
+            ?>
           </ul>
         </nav>
       </header>
@@ -37,7 +49,15 @@
           <img src="Components/audia6c4.jpg" class="car-image" alt="Audi A6 1994">
         </div>
         <button class="price-button">€3000</button>
-        <button class="rent"><a href="rent.php">Rent</a></button>
+        <?php
+        if(isset($_SESSION['username'])) {
+            // User is signed in
+            echo '<button class="rent"><a href="rent.php">Rent</a></button>';
+        } else {
+            // User is not signed in
+            echo '<p>If you want to rent this car, please <a href="signin.php">sign in</a> or <a href="signup.php">sign up</a>.</p>';
+        }
+        ?>
       </main>
 </body>
 </html>

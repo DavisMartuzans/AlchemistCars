@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +21,15 @@
             <li><a href="sellcars.php">Sell Your Car</a></li>
             <li><a href="contact.php">Contact</a></li>
             <li><a href="leasing.php">Leasing</a></li>
-            <li><a href="signin.php" >Sign In</a></li>
+            <?php
+            if(isset($_SESSION['username'])) {
+                // User is signed in
+                echo '<li><a href="logout.php">Logout</a></li>';
+            } else {
+                // User is not signed in
+                echo '<li><a href="signin.php">Sign In</a></li>';
+            }
+            ?>
           </ul>
         </nav>
         
@@ -37,7 +48,15 @@
           <img src="Components/mazdamx5.jpg" class="car-image" alt="Mazda MX-5 1993">
         </div>
         <button class="price-button">€5000</button>
-        <button class="rent"><a href="rent.php">Rent</a></button>
+        <?php
+        if(isset($_SESSION['username'])) {
+            // User is signed in
+            echo '<button class="rent"><a href="rent.php">Rent</a></button>';
+        } else {
+            // User is not signed in
+            echo '<p>If you want to rent this car, please <a href="signin.php">sign in</a> or <a href="signup.php">sign up</a>.</p>';
+        }
+        ?>
       </main>
 </body>
 </html>

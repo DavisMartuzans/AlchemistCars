@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -17,7 +20,15 @@
       <li><a href="sellcars.php">Sell Your Car</a></li>
       <li><a href="contact.php">Contact</a></li>
       <li><a href="leasing.php">Leasing</a></li>
-      <li><a href="signin.php" >Sign In</a></li>
+      <?php
+            if(isset($_SESSION['username'])) {
+                // User is signed in
+                echo '<li><a href="logout.php">Logout</a></li>';
+            } else {
+                // User is not signed in
+                echo '<li><a href="signin.php">Sign In</a></li>';
+            }
+            ?>
     </ul>
   </nav>
 </header>

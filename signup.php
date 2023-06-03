@@ -1,88 +1,86 @@
-<?php
-require_once('db_credentials.php');
-
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $myname = $_POST['name'];
-  $myemail = $_POST['email'];
-  $mypassword = $_POST['password'];
-
-  // Validates user input
-  if (!filter_var($myemail, FILTER_VALIDATE_EMAIL)) {
-    $error = "Please enter a valid email address.";
-  } elseif (empty($myname) || empty($myemail) || empty($mypassword)) {
-    $error = "Please enter your name, email, and password.";
-  } else {
-    // Checks if email already exists
-    $chk_query = "SELECT * FROM users WHERE email = ?";
-    $stmt = mysqli_prepare($db, $chk_query);
-    mysqli_stmt_bind_param($stmt, "s", $myemail);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-    if (mysqli_num_rows($result) > 0) {
-      $error = "Error: Email already exists in the database.";
-    } else {
-      // Inserts user data into the database
-      $insert_query = "INSERT INTO users (name, email, password, admin) VALUES (?, ?, ?, 0)";
-      $stmt = mysqli_prepare($db, $insert_query);
-      $hashed_password = password_hash($mypassword, PASSWORD_DEFAULT);
-      mysqli_stmt_bind_param($stmt, "sss", $myname, $myemail, $hashed_password);
-      if (mysqli_stmt_execute($stmt)) {
-        $_SESSION['login_user'] = $myemail;
-        header("Location: main.php");
-        exit();
-      } else {
-        echo "Error: " . mysqli_error($db);
-      }
-    }
-  }
-  mysqli_close($db);
-}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sign Up</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<header>
-  <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
-  <nav>
-    <ul>
-      <li><a href="main.php">Home</a></li>
-      <li><a href="parts.php">Parts</a></li>  
-      <li><a href="sellcars.php">Sell Your Car</a></li>
-      <li><a href="contact.php">Contact</a></li>
-      <li><a href="leasing.php">Leasing</a></li>
-      <li><a href="signin.php" >Sign In</a></li>
-    </ul>
-  </nav>
-</header>
 <body>
-  <div class="center-form">
-
-
-
-
-
-	<form action="" method="post">
-    <label for="name">Name:</label><br>
-		<input type="name" name="name" class = "box"><br>
-
-		<label for="email">Email:</label><br>
-		<input type="email" name="email" class = "box"><br>
-
-		<label for="password">Password:</label><br>
-		<input type="password" name="password" class = "box"><br><br>
-
-		<input type="submit" value="Register">
-    <div style = "font-size:14px; color:#cc0000; margin-top:10px"><?php if (isset($error)){echo $error;}; ?></div>
-	</form>
+  <div class="container">
+    <h1>Sign Up</h1>
+    <form action="signup.php" method="POST">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+      <input type="text" name="email" placeholder="Email" required>
+      <button type="submit">Sign Up</button>
+    </form>
   </div>
 </body>
+<style>
+  .container {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+}
+
+h1 {
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+</style>
 </html>
+<?php
+require_once('db_credentials.php');
+
+// Get form data
+$username = $_POST['username'];
+$password = $_POST['password'];
+$confirm_password = $_POST['confirm_password'];
+$email = $_POST['email'];
+
+// Validate passwords and username
+// ...
+
+// Validate email
+if (empty($email)) {
+    die("Error: Email cannot be empty.");
+}
+
+// Prepare and execute SQL statement
+$stmt = $conn->prepare("INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, 'user')");
+$stmt->bind_param("sss", $username, $password, $email);
+
+// Execute the statement and handle the result
+if ($stmt->execute()) {
+    echo "Sign up successful! Redirecting to sign-in page...";
+    header("Refresh: 2; URL=signin.php"); // Redirect to sign-in page after 2 seconds
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();
+?>
+
