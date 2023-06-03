@@ -121,4 +121,49 @@ if (isset($_POST['submit'])) {
 }
 ?>
   </body>
+  <style>
+    /* Leasing page form */
+.leasing-form{
+  width: 400px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+/* Styling for form labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Styling for form inputs */
+input[type=text], input[type=number], select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Styling for form submit button */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.container h1{
+  font-size: 25px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+  </style>
 </html>

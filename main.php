@@ -170,5 +170,116 @@ function filterCars() {
 }
 
 </script>
+<style>
+  /* Welcome */
+.welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.about {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Car filter*/
+.car-filter {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.car-filter form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.car-filter label {
+  flex-basis: 100%;
+}
+
+.car-filter select,
+.car-filter input[type="submit"] {
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.car-filter select {
+  flex-basis: calc(33.33% - 10px);
+}
+
+.car-filter input[type="submit"] {
+  flex-basis: 100%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.car-filter input[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+.filterButton{
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.filterButton:hover {
+  background-color: #444;
+}
+
+/* car cards */
+.card {
+  width: 300px;
+  height: 400px;
+  box-shadow: 2px 2px 5px #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px;
+  display: inline-block; /* added this line */
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card h3 {
+  margin: 10px;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 10px;
+  font-size: 14px;
+}
+
+.learn-more{
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.learn-more:hover {
+  background-color: #444;
+}
+</style>
 </body>
 </html>

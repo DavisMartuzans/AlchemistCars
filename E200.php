@@ -9,6 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercedes-Benz E200</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cars.css">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <body>
@@ -35,7 +36,6 @@ session_start();
       </header>
       <main>
         <section>
-        <button class="back-button" onclick="goBack()">Back</button>
           <h1>Mercedes-Benz E200</h1>
           <div class="boxed-text">
             <p>Looking for a luxurious and stylish ride that also delivers impressive performance and handling? Look<br> no further than this stunning Mercedes Benz E200 from 2002!</p>

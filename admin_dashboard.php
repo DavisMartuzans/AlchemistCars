@@ -82,11 +82,3 @@ $result = $conn->query($query);
   }
   ?>
   
-  <h3>Users</h3>
-  <?php
-  // Get users
-  $query = "SELECT * FROM users";
-  $result = $conn->query($query);
-  
-  if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {

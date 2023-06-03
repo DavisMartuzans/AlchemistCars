@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once('db_credentials.php');
+
 // Check if user is not signed in, redirect to main page
 if (!isset($_SESSION['username'])) {
     header("Location: main.php");
@@ -10,7 +12,6 @@ if (!isset($_SESSION['username'])) {
 // Retrieve user data from the session
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
-$address = $_SESSION['address'];
 
 // Process password change form submission if applicable
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -19,29 +20,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Process the password change logic here
         // ...
     }
+
+    // Check if the delete account form was submitted
+    if (isset($_POST['delete-account'])) {
+        // Delete the user account from the database
+        $stmt = $conn->prepare("DELETE FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->close();
+
+        // Clear all session variables
+        session_unset();
+
+        // Destroy the session
+        session_destroy();
+
+        // Redirect to the main page after account deletion
+        header("Location: main.php");
+        exit();
+    }
 }
 
-// Process account deletion if applicable
-if (isset($_POST['delete-account'])) {
-    // Process the account deletion logic here
-    // ...
-    // Redirect to the main page after account deletion
-    header("Location: main.php");
-    exit();
-}
-
-// Process sign out if applicable
-if (isset($_POST['sign-out'])) {
-    // Clear all session variables
-    session_unset();
-
-    // Destroy the session
-    session_destroy();
-
-    // Redirect to the signed out main page
-    header("Location:main.php");
-    exit();
-}
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +50,6 @@ if (isset($_POST['sign-out'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>My Account</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <body>
@@ -74,7 +73,6 @@ if (isset($_POST['sign-out'])) {
     <h3>Account Information</h3>
     <p><strong>Username:</strong> <?php echo $username; ?></p>
     <p><strong>Email:</strong> <?php echo $email; ?></p>
-    <p><strong>Address:</strong> <?php echo $address; ?></p>
     
     <h3>Change Password</h3>
     <form class="password-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -96,5 +94,41 @@ if (isset($_POST['sign-out'])) {
       <input type="submit" class="delete-button" name="delete-account" value="Delete Account">
     </form>
   </div>
+  <style>
+    html,
+body {
+  height: auto;
+  width: auto;
+  font-family: 'Lato';font-size: 15px;
+}
+
+/* Nav bar */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+#logo {
+  height: 50px;
+  margin-right: 20px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 20;
+  padding: 0;
+}
+
+nav a {
+  display: block;
+  padding:10px 15px;
+  color: #333;
+  text-decoration: none;
+}
+  </style>
 </body>
 </html>

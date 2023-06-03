@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMW 330i</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cars.css">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
 <body>

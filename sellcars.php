@@ -34,7 +34,8 @@ session_start();
   </nav>
   
 </header>
-  <div class="selling-form">
+<body>
+<div class="selling-form">
   	<div class="selling-container">
       <h1>Sell Your Car</h1>
       <form class="sellcars" action="process_sell_form.php" method="post">
@@ -59,6 +60,15 @@ session_start();
         <input class="filterButton" type="submit" value="Submit">
       </form>
     </div>
-<body>
 </body>
+<style>
+  /* Sell your car form */
+.selling-form {
+  max-width: 200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+</style>
 </html>
