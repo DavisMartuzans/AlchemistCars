@@ -3,7 +3,7 @@ session_start();
 
 require_once('db_credentials.php');
 
-// Check if user is not signed in, redirect to main page
+// Check if the user is not signed in, redirect to the main page
 if (!isset($_SESSION['username'])) {
     header("Location: main.php");
     exit();
@@ -25,8 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
-        $stmt->bind_result($hashedPassword);
-        $stmt->fetch();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $hashedPassword = $row['password'];
         $stmt->close();
 
         // Verify if the current password is correct
@@ -111,6 +112,18 @@ $conn->close();
     <p><strong>Email:</strong> <?php echo $email; ?></p>
     
     <h3>Change Password</h3>
+    <?php
+    if (isset($_GET['password_changed'])) {
+        echo '<p class="success-message">Password changed successfully.</p>';
+    } elseif (isset($_GET['error'])) {
+        $error = $_GET['error'];
+        if ($error === 'password_mismatch') {
+            echo '<p class="error-message">New password and confirm password do not match.</p>';
+        } elseif ($error === 'invalid_password') {
+            echo '<p class="error-message">Invalid current password.</p>';
+        }
+    }
+    ?>
     <form class="password-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
       <label for="current-password">Current Password:</label>
       <input type="password" id="current-password" name="current-password" required>
@@ -132,39 +145,47 @@ $conn->close();
   </div>
   <style>
     html,
-body {
-  height: auto;
-  width: auto;
-  font-family: 'Lato';font-size: 15px;
-}
+    body {
+      height: auto;
+      width: auto;
+      font-family: 'Lato';font-size: 15px;
+    }
 
-/* Nav bar */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #f2f2f2;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-}
-#logo {
-  height: 50px;
-  margin-right: 20px;
-}
+    /* Nav bar */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: #f2f2f2;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    }
+    #logo {
+      height: 50px;
+      margin-right: 20px;
+    }
 
-nav ul {
-  display: flex;
-  list-style: none;
-  margin: 20;
-  padding: 0;
-}
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 20;
+      padding: 0;
+    }
 
-nav a {
-  display: block;
-  padding:10px 15px;
-  color: #333;
-  text-decoration: none;
-}
+    nav a {
+      display: block;
+      padding:10px 15px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .success-message {
+      color: green;
+    }
+
+    .error-message {
+      color: red;
+    }
   </style>
 </body>
 </html>
