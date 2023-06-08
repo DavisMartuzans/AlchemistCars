@@ -52,17 +52,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <header>
-        <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
-        <nav>
-          <ul>
-            <li><a href="main.php">Home</a></li>
-            <li><a href="parts.php">Parts</a></li>
-            <li><a href="sellcars.php">Sell Your Car</a></li>
-            <li><a href="contact.php">Contact</a></li>
-            <li><a href="leasing.php">Leasing</a></li>
-          </ul>
-        </nav>
-      </header>
+  <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
+  <nav>
+    <ul>
+      <li><a href="main.php">Home</a></li>
+      <li><a href="contact.php">Contact</a></li>
+      <?php
+      if(isset($_SESSION['username'])) {
+          if($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'user') {
+              echo '<li><a href="parts.php">Parts</a></li>';
+              echo '<li><a href="sellcars.php">Sell Your Car</a></li>';
+              echo '<li><a href="leasing.php">Leasing</a></li>';
+          }
+          if($_SESSION['role'] === 'admin') {
+              echo '<li><a href="admin_dashboard.php">Admin Dashboard</a></li>';
+          }
+          echo '<li><a href="logout.php">Logout</a></li>';
+          echo '<li><a href="account.php">Account</a></li>';
+      } else {
+          echo '<li><a href="signin.php">Sign In</a></li>';
+      }
+      ?>
+    </ul>
+  </nav>
+</header>
 <body>
     <div class="container">
         <h2>Sign Up</h2>
@@ -95,9 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
     <style>
- 
-/* Sign in/up page */
-.signin-form {
+/* Sign-in Page Styles */
+.login-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,25 +125,28 @@ form {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
 }
 
+.user-box {
+  margin-bottom: 20px;
+}
 
-.username {
+label {
   display: block;
   margin-bottom: 5px;
   color: #333;
 }
 
-.username[type="text"],
-.password[type="password"] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.signin[type="submit"] {
+button[type="submit"] {
   display: block;
   width: 100%;
   padding: 10px;
@@ -140,6 +155,16 @@ form {
   background-color: #333;
   color: #fff;
   cursor: pointer;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+.error {
+  color: #ff0000;
+  margin-bottom: 10px;
 }
     </style>
 </body>

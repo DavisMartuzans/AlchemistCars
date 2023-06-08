@@ -16,10 +16,9 @@ $email = $_SESSION['email'];
 // Process password change form submission if applicable
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if the password change form was submitted
-    if (isset($_POST['current-password']) && isset($_POST['new-password']) && isset($_POST['confirm-password'])) {
+    if (isset($_POST['current-password']) && isset($_POST['new-password'])) {
         $currentPassword = $_POST['current-password'];
         $newPassword = $_POST['new-password'];
-        $confirmPassword = $_POST['confirm-password'];
 
         // Retrieve the user's current password from the database
         $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
@@ -27,30 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
-        $hashedPassword = $row['password'];
+        $storedPassword = $row['password'];
         $stmt->close();
 
         // Verify if the current password is correct
-        if (password_verify($currentPassword, $hashedPassword)) {
-            // Verify if the new password and confirm password match
-            if ($newPassword === $confirmPassword) {
-                // Hash the new password
-                $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        if ($currentPassword === $storedPassword) {
+            // Update the user's password in the database
+            $stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
+            $stmt->bind_param("ss", $newPassword, $username);
+            $stmt->execute();
+            $stmt->close();
 
-                // Update the user's password in the database
-                $stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
-                $stmt->bind_param("ss", $newHashedPassword, $username);
-                $stmt->execute();
-                $stmt->close();
-
-                // Redirect to the account page with a success message
-                header("Location: account.php?password_changed=1");
-                exit();
-            } else {
-                // Redirect to the account page with an error message
-                header("Location: account.php?error=password_mismatch");
-                exit();
-            }
+            // Redirect to the account page with a success message
+            header("Location: account.php?password_changed=1");
+            exit();
         } else {
             // Redirect to the account page with an error message
             header("Location: account.php?error=invalid_password");
@@ -81,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $conn->close();
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,8 +95,7 @@ $conn->close();
   </header>
   
   <div class="account-container">
-    <h1>My Account</h1>
-    <h2>Welcome, <?php echo $username; ?>!</h2>
+    <h1><?php echo $username; ?> Account</h1>
     <h3>Account Information</h3>
     <p><strong>Username:</strong> <?php echo $username; ?></p>
     <p><strong>Email:</strong> <?php echo $email; ?></p>
@@ -117,9 +106,7 @@ $conn->close();
         echo '<p class="success-message">Password changed successfully.</p>';
     } elseif (isset($_GET['error'])) {
         $error = $_GET['error'];
-        if ($error === 'password_mismatch') {
-            echo '<p class="error-message">New password and confirm password do not match.</p>';
-        } elseif ($error === 'invalid_password') {
+        if ($error === 'invalid_password') {
             echo '<p class="error-message">Invalid current password.</p>';
         }
     }
@@ -130,9 +117,6 @@ $conn->close();
       
       <label for="new-password">New Password:</label>
       <input type="password" id="new-password" name="new-password" required>
-      
-      <label for="confirm-password">Confirm Password:</label>
-      <input type="password" id="confirm-password" name="confirm-password" required>
       
       <input class="password-button" type="submit" value="Change Password">
     </form>

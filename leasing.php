@@ -9,27 +9,31 @@ session_start();
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
   </head>
   <body>
-    <header>
-        <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
-        <nav>
-          <ul>
-            <li><a href="main.php">Home</a></li>
-            <li><a href="parts.php">Parts</a></li>
-            <li><a href="sellcars.php">Sell Your Car</a></li>
-            <li><a href="contact.php">Contact</a></li>
-            <li><a href="leasing.php">Leasing</a></li>
-            <?php
-            if(isset($_SESSION['username'])) {
-                // User is signed in
-                echo '<li><a href="logout.php">Logout</a></li>';
-            } else {
-                // User is not signed in
-                echo '<li><a href="signin.php">Sign In</a></li>';
-            }
-            ?>
-          </ul>
-        </nav>
-      </header>
+  <header>
+  <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
+  <nav>
+    <ul>
+      <li><a href="main.php">Home</a></li>
+      <li><a href="contact.php">Contact</a></li>
+      <?php
+      if(isset($_SESSION['username'])) {
+          if($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'user') {
+              echo '<li><a href="parts.php">Parts</a></li>';
+              echo '<li><a href="sellcars.php">Sell Your Car</a></li>';
+              echo '<li><a href="leasing.php">Leasing</a></li>';
+          }
+          if($_SESSION['role'] === 'admin') {
+              echo '<li><a href="admin_dashboard.php">Admin Dashboard</a></li>';
+          }
+          echo '<li><a href="logout.php">Logout</a></li>';
+          echo '<li><a href="account.php">Account</a></li>';
+      } else {
+          echo '<li><a href="signin.php">Sign In</a></li>';
+      }
+      ?>
+    </ul>
+  </nav>
+</header>
       <section id="leasing">
   <div class="container">
     <h1>Leasing Options</h1>
