@@ -17,14 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if the file is an image
     if (strpos($image_type, 'image') !== false) {
-        // Move the uploaded image to a desired directory
+        // Move the uploaded image to the desired directory
         $target_directory = 'Components/';
-        $target_file = basename($image_name);
+        $target_file = $target_directory . basename($image_name);
 
         if (move_uploaded_file($image_tmp, $target_file)) {
             // Image uploaded successfully, insert the car details into the database
             $sql = "INSERT INTO cars (make, model, year, price, description, image)
-            VALUES ('$make', '$model', '$year', '$price', '$description', '$target_file')";
+            VALUES ('$make', '$model', '$year', '$price', '$description', '$image_name')";
 
             if ($conn->query($sql) === TRUE) {
                 // Record created successfully, redirect to a success page
@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 }
 ?>
+
 
 
 

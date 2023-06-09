@@ -1,15 +1,39 @@
 <?php
 session_start();
+require_once('db_credentials.php');
+
+// Check if car ID is provided in the URL
+if (!isset($_GET['id'])) {
+    // If car ID is missing, redirect back to the cars page
+    header("Location: cars.php");
+    exit();
+}
+
+// Retrieve the car details from the database using the provided ID
+$carId = $_GET['id'];
+$sql = "SELECT * FROM cars WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $carId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Fetch the car data
+if ($result->num_rows === 0) {
+    // If no car found with the given ID, redirect back to the cars page
+    header("Location: cars.php");
+    exit();
+}
+
+$car = $result->fetch_assoc();
+
+$conn->close();
 ?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>AlchemistCars</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+    <title>Rent Car - <?php echo $car['make'] . ' ' . $car['model']; ?></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <header>
   <img src="Components/AlchemistCars.PNG" alt="Company Logo" id="logo">
@@ -37,44 +61,29 @@ session_start();
   </nav>
 </header>
 <body>
-	<form action="rent.php" method="post">
-		<label for="car">Select a Car:</label>
-		<select id="car" name="car">
-			<option value="Mercedes-Benz E200">Mercedes-Benz E200</option>
-      <option value="Mercedes-Benz E63">Mercedes-Benz E63</option>
-      <option value="Volvo S60R">Volvo S60R</option>
-			<option value="Audi A6">Audi A6</option>
-			<option value="BMW 330i">BMW 330i</option>
-      <option value="Mazda MX5">Mazda MX5</option>
-		</select>
-		<br><br>
-		<label for="pickup_date">Pick-up Date:</label>
-		<input type="date" id="pickup_date" name="pickup_date">
-		<br><br>
-		<label for="return_date">Return Date:</label>
-		<input type="date" id="return_date" name="return_date">
-		<br><br>
-		<input type="submit" value="Submit">
-	</form>
-  <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $car = $_POST['car'];
-  $pickup_date = $_POST['pickup_date'];
-  $return_date = $_POST['return_date'];
+    <div class="container">
+        <h2>Rent Car - <?php echo $car['make'] . ' ' . $car['model']; ?></h2>
+        <div class="car-info">
+            <img src="Components/<?php echo $car['image']; ?>" alt="<?php echo $car['make'] . ' ' . $car['model']; ?>">
+            <h3><?php echo $car['make'] . ' ' . $car['model']; ?></h3>
+            <p>Price: $<?php echo $car['price']; ?></p>
+            <p>Year: <?php echo $car['year']; ?></p>
+            <p>Description: <?php echo $car['description']; ?></p>
 
-  require_once('db_credentials.php');
+            <form action="process_rent.php" method="post">
+                <label for="pickup-date">Pickup Date:</label>
+                <input type="date" id="pickup-date" name="pickup_date" required>
 
-  $sql = "INSERT INTO car_rentals (car, pickup_date, return_date)
-  VALUES ('$car', '$pickup_date', '$return_date')";
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date" name="end_date" required>
 
-  if ($conn->query($sql) === TRUE) {
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+                <input type="hidden" name="car_id" value="<?php echo $carId; ?>">
 
-  $conn->close();
-}
-?>
+                <button type="submit" class="rent-button">Rent Now</button>
+            </form>
+        </div>
+    </div>
 
 </body>
 </html>
+

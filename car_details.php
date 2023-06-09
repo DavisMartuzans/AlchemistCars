@@ -69,6 +69,8 @@ $conn->close();
             <p>Price: $<?php echo $car['price']; ?></p>
             <p>Year: <?php echo $car['year']; ?></p>
             <p>Description: <?php echo $car['description']; ?></p>
+
+            <a href="rent.php?id=<?php echo $carId; ?>" class="rent-button">Rent</a>
         </div>
     </div>
     <style>
