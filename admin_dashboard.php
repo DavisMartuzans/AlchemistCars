@@ -55,6 +55,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Retrieve the list of parts from the database
+$stmt = $conn->prepare("SELECT * FROM parts");
+$stmt->execute();
+$result = $stmt->get_result();
+$parts = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
+// Process the delete request if applicable
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['delete-part'])) {
+        $partId = $_POST['delete-part'];
+
+        // Delete the part from the database
+        $stmt = $conn->prepare("DELETE FROM parts WHERE id = ?");
+        $stmt->bind_param("i", $partId);
+        $stmt->execute();
+        $stmt->close();
+
+        // Redirect to the admin dashboard after deleting the part
+        header("Location: admin_dashboard.php");
+        exit();
+    }
+}
+
 $conn->close();
 ?>
 
@@ -125,7 +149,7 @@ $conn->close();
     </tbody>
   </table>
 
-  <h3>Cars</h3>
+  <h3>Cars List</h3>
   <table>
   <thead>
     <tr>
@@ -155,7 +179,36 @@ $conn->close();
     <?php endforeach; ?>
   </tbody>
 </table>
-
+<h3>Parts List</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Part Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($parts as $part): ?>
+      <tr>
+        <td><?php echo $part['id']; ?></td>
+        <td><?php echo $part['part_name']; ?></td>
+        <td><?php echo $part['description']; ?></td>
+        <td><?php echo $part['price']; ?></td>
+        <td><img src="Components/<?php echo $part['image']; ?>" alt="<?php echo $part['part_name']; ?>" width="100"></td>
+        <td>
+          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <input type="hidden" name="delete-part" value="<?php echo $part['id']; ?>">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
 </body>
 <style>
     h2 {
