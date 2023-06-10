@@ -9,34 +9,34 @@ $result = $conn->query($sql);
 // Check if the user is logged in
 $loggedIn = isset($_SESSION['username']);
 
-// Process the lease request
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
+// Check if the lease form is submitted
+if ($loggedIn && isset($_POST['car_id'], $_POST['lease_duration'])) {
+    // Get the user ID from the session
+    $userId = isset($_SESSION['id']) ? $_SESSION['id'] : '';
+
+    // Get the car ID and lease duration from the form
     $carId = $_POST['car_id'];
     $leaseDuration = $_POST['lease_duration'];
-    $userId = $_SESSION['user_id']; // Assuming the user ID is stored in the session
 
-    // Insert the lease data into the leases table
-    $sql = "INSERT INTO leases (car_id, user_id, duration) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iii", $carId, $userId, $leaseDuration);
-    $stmt->execute();
+    // Verify that the user ID exists in the users table
+    $verifySql = "SELECT id FROM users WHERE id = '$userId'";
+    $verifyResult = $conn->query($verifySql);
 
-    // Check if the lease is successfully added
-    if ($stmt->affected_rows > 0) {
-        // Redirect to the lease success page or display a success message
-        header("Location: leasing.php");
-        exit();
+    if ($verifyResult->num_rows > 0 && $userId !== '') {
+        // Insert the lease into the database
+        $insertSql = "INSERT INTO leases (car_id, user_id, duration) VALUES ('$carId', '$userId', '$leaseDuration')";
+        if ($conn->query($insertSql) === TRUE) {
+            echo "Lease created successfully.";
+        } else {
+            echo "Error creating lease: " . $conn->error;
+        }
     } else {
-        // An error occurred, redirect back to the leasing page with an error message
-        header("Location: leasing.php?error=1");
-        exit();
+        echo "Invalid user ID.";
     }
 }
 
 $conn->close();
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -89,9 +89,11 @@ $conn->close();
                 echo '<input type="hidden" name="car_id" value="' . $row['id'] . '">';
                 echo '<label for="lease_duration">Lease Duration:</label>';
                 echo '<select name="lease_duration" id="lease_duration">';
-                echo '<option value="1">1 Month</option>';
-                echo '<option value="3">3 Months</option>';
-                echo '<option value="6">6 Months</option>';
+                echo '<option value="12">12 Months</option>';
+                echo '<option value="24">24 Months</option>';
+                echo '<option value="36">36 Months</option>';
+                echo '<option value="48">48 Months</option>';
+                echo '<option value="60">60 Months</option>';
                 echo '</select>';
                 echo '<button type="submit" class="lease-button">Lease Now</button>';
                 echo '</form>';
