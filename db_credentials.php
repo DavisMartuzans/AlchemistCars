@@ -1,15 +1,14 @@
 <?php
-
-// Database credentials
+// Datubāzes dati
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "AlchemistCars";
 
-// Create connection
+// Izveido savienojumu
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+// Pārbauda savienojumu
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

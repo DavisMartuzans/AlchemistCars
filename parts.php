@@ -1,35 +1,37 @@
 <?php
+// Sāk sesiju
 session_start();
 
-// Check if the user is logged in
+// Pārbauda, vai lietotājs ir pierakstījies
 if (!isset($_SESSION['username'])) {
-    // Redirect to sign in page or display an error message
+    // Novirza uz pierakstīšanās lapu vai rāda kļūdas ziņojumu
     header("Location: signin.php");
     exit();
 }
 
+// Pievieno datubāzes piekļuves datus
 require_once('db_credentials.php');
 
-// Check if the form is submitted
+// Pārbauda, vai forma ir nosūtīta
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
+    // Iegūst formas datus
     $partName = $_POST["partName"];
     $description = $_POST["description"];
     $price = $_POST["price"];
     $image = $_FILES["image"]["name"];
 
-    // Set the target directory to store the uploaded images
+    // Nosaka mērķa direktoriju, lai saglabātu augšupielādētos attēlus
     $targetDir = "Components/";
     $targetFile = $targetDir . basename($_FILES["image"]["name"]);
 
-    // Move the uploaded file to the target directory
+    // Pārvieto augšupielādēto failu uz mērķa direktoriju
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
-        // Insert the part data into the database
+        // Ievieto daļas datus datubāzē
         $sql = "INSERT INTO parts (part_name, description, price, image) VALUES ('$partName', '$description', '$price', '$image')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Part added successfully";
-            // Redirect to a different page after successful form submission
+            // Novirza uz citu lapu pēc veiksmīgas formas nosūtīšanas
             header("Location: parts.php");
             exit();
         } else {
@@ -40,13 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Retrieve parts from the database
+// Izgūst detaļas no datubāzes
 $sql = "SELECT * FROM parts";
 $result = $conn->query($sql);
 
-// Close the database connection
+// Aizver datubāzes pieslēgumu
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -67,10 +70,10 @@ $conn->close();
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="main.php">AlchemistCars</a>
+    <a class="navbar-brand" href="index.php">AlchemistCars</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="main.php">Home</a>
+        <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contacts</a>

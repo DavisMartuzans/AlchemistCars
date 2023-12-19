@@ -1,5 +1,5 @@
 <?php
-// Check if the user is logged in and is an admin
+// Pārbauda, vai ir pierakstījies kā administrators
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['role'] !== 'admin') {
     header("Location: signin.php");
@@ -8,72 +8,73 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['role'] !== 'admin') {
 
 require_once('db_credentials.php');
 
-// Retrieve the list of cars from the database
+// Iegūst automašīnu sarakstu no datubāzes
 $stmt = $conn->prepare("SELECT * FROM cars");
 $stmt->execute();
 $result = $stmt->get_result();
 $cars = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
+// Apstrādā dzēšanas pieprasījumu
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete-car'])) {
         $carId = $_POST['delete-car'];
 
-        // Delete the car from the database
+        // Dzēš automašīnu no datubāzes
         $stmt = $conn->prepare("DELETE FROM cars WHERE id = ?");
         $stmt->bind_param("i", $carId);
         $stmt->execute();
         $stmt->close();
 
-        // Redirect to the admin dashboard after deleting the car
+        // Novirza uz administratora informācijas paneli pēc automašīnas dzēšanas
         header("Location: admin_dashboard.php");
         exit();
     }
 }
 
-// Retrieve the list of users from the database
+// Iegūst lietotāju sarakstu no datubāzes
 $stmt = $conn->prepare("SELECT * FROM users");
 $stmt->execute();
 $result = $stmt->get_result();
 $users = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Process the delete request if applicable
+// Apstrādā dzēšanas pieprasījumu
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete-user'])) {
         $userId = $_POST['delete-user'];
 
-        // Delete the user from the database
+        // Dzēš lietotāju no datubāzes
         $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $stmt->close();
 
-        // Redirect to the admin dashboard after deleting the user
+        // Novirza uz administratora informācijas paneli pēc lietotāja dzēšanas
         header("Location: admin_dashboard.php");
         exit();
     }
 }
 
-// Retrieve the list of parts from the database
+// Iegūst detaļu sarakstu no datubāzes
 $stmt = $conn->prepare("SELECT * FROM parts");
 $stmt->execute();
 $result = $stmt->get_result();
 $parts = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Process the delete request if applicable
+// Apstrādā dzēšanas pieprasījumu
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete-part'])) {
         $partId = $_POST['delete-part'];
 
-        // Delete the part from the database
+        // Dzēš detaļu no datubāzes
         $stmt = $conn->prepare("DELETE FROM parts WHERE id = ?");
         $stmt->bind_param("i", $partId);
         $stmt->execute();
         $stmt->close();
 
-        // Redirect to the admin dashboard after deleting the part
+        // Novirza uz administratora informācijas paneli pēc detaļas dzēšanas
         header("Location: admin_dashboard.php");
         exit();
     }
@@ -81,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -100,10 +102,10 @@ $conn->close();
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="main.php">AlchemistCars</a>
+    <a class="navbar-brand" href="index.php">AlchemistCars</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="main.php">Home</a>
+        <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contacts</a>

@@ -25,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Redirect based on user role
             if ($_SESSION['role'] == 'user') {
-                header("Location: main.php"); // Redirect to user-specific page
+                header("Location: index.php"); // Redirect to user-specific page
                 exit();
             } elseif ($_SESSION['role'] == 'admin') {
-                header("Location: main.php"); // Redirect to admin-specific page
+                header("Location: index.php"); // Redirect to admin-specific page
                 exit();
             } else {
                 $error_message = "Invalid role!";
@@ -60,10 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="main.php">AlchemistCars</a>
+    <a class="navbar-brand" href="index.php">AlchemistCars</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="main.php">Home</a>
+        <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contacts</a>

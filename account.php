@@ -1,26 +1,24 @@
 <?php
 session_start();
-
 require_once('db_credentials.php');
 
-// Check if the user is not signed in, redirect to the main page
+// Pārbauda, vai lietotājs ir pierakstījies, ja nav tad aizsūta uz galveno lapu
 if (!isset($_SESSION['username'])) {
-    header("Location: main.php");
+    header("Location: index.php");
     exit();
 }
 
-// Retrieve user data from the session
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
-// Process password change form submission if applicable
+// Apstrādā paroles maiņas formu
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if the password change form was submitted
+    // Pārbauda, vai iesniegta paroles maiņas forma
     if (isset($_POST['current-password']) && isset($_POST['new-password'])) {
         $currentPassword = $_POST['current-password'];
         $newPassword = $_POST['new-password'];
 
-        // Retrieve the user's current password from the database
+        // Iegūst lietotāja paroli no datubāzes
         $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -29,40 +27,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $storedPassword = $row['password'];
         $stmt->close();
 
-        // Verify if the current password is correct
+        // Pārbauda, vai parole ir pareiza
         if ($currentPassword === $storedPassword) {
-            // Update the user's password in the database
+            // Atjauno lietotāja paroli datubāzē
             $stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
             $stmt->bind_param("ss", $newPassword, $username);
             $stmt->execute();
             $stmt->close();
 
-            // Redirect to the account page with a success message
+            // Novirza uz konta lapu
             header("Location: account.php?password_changed=1");
             exit();
         } else {
-            // Redirect to the account page with an error message
+            // Novirza uz konta lapu ar kļūdas ziņojumu
             header("Location: account.php?error=invalid_password");
             exit();
         }
     }
 
-    // Check if the delete account form was submitted
+    // Pārbauda, vai iesniegta dzēšanas forma
     if (isset($_POST['delete-account'])) {
-        // Delete the user account from the database
+        // Dzēš lietotāju no datubāzes
         $stmt = $conn->prepare("DELETE FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->close();
 
-        // Clear all session variables
         session_unset();
 
-        // Destroy the session
         session_destroy();
-
-        // Redirect to the main page after account deletion
-        header("Location: main.php");
+      
+        header("Location: index.php");
         exit();
     }
 }
@@ -89,10 +84,10 @@ $conn->close();
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="main.php">AlchemistCars</a>
+    <a class="navbar-brand" href="index.php">AlchemistCars</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="main.php">Home</a>
+        <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contacts</a>
@@ -115,15 +110,15 @@ $conn->close();
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <?php
         if (isset($_SESSION['username'])) {
-                        // For admin content in the header
+                        // Priekš administrātora
                         if ($_SESSION['role'] === 'admin') {
                             echo '<li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin Dashboard</a></li>';
                         }
-                        // For signed-in in users
+                        // Priekš lietotāja
                         echo '<li class="nav-item"><a class="nav-link" href="account.php">Account Settings</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
                     } else {
-                        // For not signed-in users
+                        // Priekš vieša
                         echo '<li class="nav-item"><a class="nav-link" href="signin.php">Sign In</a></li>';
                     }
         ?>
@@ -143,15 +138,16 @@ $conn->close();
     
     <h3>Change Password</h3>
     <?php
-    if (isset($_GET['password_changed'])) {
-        echo '<p class="success-message">Password changed successfully.</p>';
-    } elseif (isset($_GET['error'])) {
-        $error = $_GET['error'];
-        if ($error === 'invalid_password') {
-            echo '<p class="error-message">Invalid current password.</p>';
-        }
+if (isset($_GET['password_changed'])) {
+    echo '<p class="success-message">Parole veiksmīgi mainīta.</p>';
+} elseif (isset($_GET['error'])) {
+    $error = $_GET['error'];
+    // Parāda kļūdas ziņojumu, ja esošā parole nav pareiza
+    if ($error === 'invalid_password') {
+        echo '<p class="error-message">Nepareiza esošā parole.</p>';
     }
-    ?>
+}
+?>
     <form class="password-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
       <label for="current-password">Current Password:</label>
       <input type="password" id="current-password" name="current-password" required>

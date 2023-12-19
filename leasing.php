@@ -2,41 +2,42 @@
 session_start();
 require_once('db_credentials.php');
 
-// Retrieve the cars available for lease from the database
+// Iegūst automašīnas, kas pieejamas nomai, no datubāzes
 $sql = "SELECT * FROM cars";
 $result = $conn->query($sql);
 
-// Check if the user is logged in
+// Pārbauda, vai lietotājs ir pierakstījies
 $loggedIn = isset($_SESSION['username']);
 
-// Check if the lease form is submitted
+// Pārbauda, vai nomas forma ir iesniegta
 if ($loggedIn && isset($_POST['car_id'], $_POST['lease_duration'])) {
-    // Get the user ID from the session
+    // Iegūst lietotāja ID no sesijas
     $userId = isset($_SESSION['id']) ? $_SESSION['id'] : '';
 
-    // Get the car ID and lease duration from the form
+    // Iegūst automašīnas ID un nomas ilgumu no formas
     $carId = $_POST['car_id'];
     $leaseDuration = $_POST['lease_duration'];
 
-    // Verify that the user ID exists in the users table
+    // Pārbauda, vai lietotāja ID pastāv lietotāju tabulā
     $verifySql = "SELECT id FROM users WHERE id = '$userId'";
     $verifyResult = $conn->query($verifySql);
 
     if ($verifyResult->num_rows > 0 && $userId !== '') {
-        // Insert the lease into the database
+        // Ievieto nomas informāciju datubāzē
         $insertSql = "INSERT INTO leases (car_id, user_id, duration) VALUES ('$carId', '$userId', '$leaseDuration')";
         if ($conn->query($insertSql) === TRUE) {
-            echo "Lease created successfully.";
+            echo "Noma veiksmīgi izveidota.";
         } else {
-            echo "Error creating lease: " . $conn->error;
+            echo "Kļūda, veidojot nomu: " . $conn->error;
         }
     } else {
-        echo "Invalid user ID.";
+        echo "Nederīgs lietotāja ID.";
     }
 }
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -55,10 +56,10 @@ $conn->close();
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="main.php">AlchemistCars</a>
+    <a class="navbar-brand" href="index.php">AlchemistCars</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="main.php">Home</a>
+        <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contacts</a>
@@ -81,15 +82,15 @@ $conn->close();
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <?php
         if (isset($_SESSION['username'])) {
-                        // For admin content in the header
+                        // Priekš administrātora
                         if ($_SESSION['role'] === 'admin') {
                             echo '<li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin Dashboard</a></li>';
                         }
-                        // For signed-in in users
+                        // Priekš lietotāja
                         echo '<li class="nav-item"><a class="nav-link" href="account.php">Account Settings</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
                     } else {
-                        // For not signed-in users
+                        // Priekš vieša
                         echo '<li class="nav-item"><a class="nav-link" href="signin.php">Sign In</a></li>';
                     }
         ?>

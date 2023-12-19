@@ -1,15 +1,16 @@
 <?php
 session_start();
+
 require_once('db_credentials.php');
 
-// Check if car ID is provided in the URL
+// Pārbauda, vai cars ID ir nodots URL
 if (!isset($_GET['id'])) {
-    // If car ID is missing, redirect back to the cars page
+    // Ja cars ID nav norādīts, novirza automašīnu lapu
     header("Location: cars.php");
     exit();
 }
 
-// Retrieve the car details from the database using the provided ID
+// Iegūst automašīnas datus no datubāzes, izmantojot norādīto ID
 $carId = $_GET['id'];
 $sql = "SELECT * FROM cars WHERE id = ?";
 $stmt = $conn->prepare($sql);
@@ -17,9 +18,9 @@ $stmt->bind_param("i", $carId);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Fetch the car data
+// Iegūst automašīnas datus
 if ($result->num_rows === 0) {
-    // If no car found with the given ID, redirect back to the cars page
+    // Ja nekāda automašīna nav atrasta ar norādīto ID, novirza uz automašīnu lapu
     header("Location: cars.php");
     exit();
 }
@@ -28,6 +29,7 @@ $car = $result->fetch_assoc();
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -44,10 +46,10 @@ $conn->close();
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="main.php">AlchemistCars</a>
+    <a class="navbar-brand" href="index.php">AlchemistCars</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="main.php">Home</a>
+        <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contacts</a>

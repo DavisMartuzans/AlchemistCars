@@ -2,15 +2,15 @@
 session_start();
 require_once('db_credentials.php');
 
-// Retrieve the sold cars from the database
+// Dabū cars no datubāzes
 $sql = "SELECT * FROM cars";
 $result = $conn->query($sql);
 
-// Store the fetched car data in an array
+// Glabā mašīnas arraya
 $cars = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Create the details_url using the car's ID
+        // izveido url saistitu ar cars_id
         $details_url = "car_details.php?id=" . $row['id'];
         $row['details_url'] = $details_url;
         $cars[] = $row;
@@ -39,10 +39,10 @@ $conn->close();
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="main.php">AlchemistCars</a>
+    <a class="navbar-brand" href="index.php">AlchemistCars</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="main.php">Home</a>
+        <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contacts</a>
@@ -65,15 +65,15 @@ $conn->close();
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <?php
         if (isset($_SESSION['username'])) {
-                        // For admin content in the header
+                        // Priekš administrātora
                         if ($_SESSION['role'] === 'admin') {
                             echo '<li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin Dashboard</a></li>';
                         }
-                        // For signed-in in users
+                        // Priekš lietotājiem
                         echo '<li class="nav-item"><a class="nav-link" href="account.php">Account Settings</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
                     } else {
-                        // For not signed-in users
+                        // Priekš viesiem
                         echo '<li class="nav-item"><a class="nav-link" href="signin.php">Sign In</a></li>';
                     }
         ?>
@@ -106,67 +106,82 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 ?>
 
 <div id="car-filter">
+    <!-- Filtrēšanas veidlapa ar diviem izvēles laukiem un iesniegšanas pogu -->
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
+            <!-- Izvēles lauks pēc automašīnas ražotāja -->
         <label for="make">Make:</label>
         <select id="make" name="make">
             <option value="">All Makes</option>
-            <!-- Add options for available car makes from the database -->
             <?php
+            // Atrod un izvada unikālos ražotājus no automašīnu saraksta
             $unique_makes = array_unique(array_column($cars, 'make'));
             foreach ($unique_makes as $make) {
+                // Noteikt, vai šis ražotājs ir izvēlēts
                 $selected = isset($_GET['make']) && $_GET['make'] === $make ? 'selected' : '';
+                // Izvada izvēles iespēju ar ražotāju un iezīmēto izvēli
                 echo '<option value="' . $make . '" ' . $selected . '>' . $make . '</option>';
             }
             ?>
         </select>
 
+        <!-- Izvēles lauks pēc automašīnas modeļa -->
         <label for="model">Model:</label>
         <select id="model" name="model">
             <option value="">All Models</option>
-            <!-- Add options for available car models from the database -->
             <?php
+            // Atrod un izvada unikālos modeļus no automašīnu saraksta
             $unique_models = array_unique(array_column($cars, 'model'));
             foreach ($unique_models as $model) {
+                // Noteikt, vai šis modeļa ir izvēlēts
                 $selected = isset($_GET['model']) && $_GET['model'] === $model ? 'selected' : '';
+                // Izvada izvēles iespēju ar modeļi un iezīmēto izvēli
                 echo '<option value="' . $model . '" ' . $selected . '>' . $model . '</option>';
             }
             ?>
         </select>
 
+        <!-- Poga, lai iesniegtu filtrēšanas formu -->
         <input type="submit" value="Filter" id="filterButton">
     </form>
 </div>
 
 <ul id="carList">
-    <?php
-    // Car filter
+<?php
+    // Kopējot sākotnējo automašīnu masīvu mainīgajā $filtered_cars
     $filtered_cars = $cars;
+
+    // Pārbauda, vai URL ir iestatīts 'make' un tas nav tukšs
     if (isset($_GET['make']) && $_GET['make'] !== '') {
+        // Filtrē automašīnas pēc 'make'
         $filtered_cars = array_filter($filtered_cars, function ($car) {
             return $car['make'] === $_GET['make'];
         });
     }
 
+    // Pārbauda, vai URL ir iestatīts 'model' un tas nav tukšs
     if (isset($_GET['model']) && $_GET['model'] !== '') {
+        // Filtrē automašīnas pēc 'model'
         $filtered_cars = array_filter($filtered_cars, function ($car) {
             return $car['model'] === $_GET['model'];
         });
     }
 
+    // Iziet cauri filtrētajām automašīnām un izvada informāciju
     foreach ($filtered_cars as $car) {
         echo '<div class="card">';
         echo '<img src="Components/' . $car['image'] . '" alt="' . $car['make'] . ' ' . $car['model'] . '" style="width:100%">';
         echo '<h3>' . $car['make'] . ' ' . $car['model'] . '</h3>';
-        echo '<p class="price">Price: $' . $car['price'] . '</p>';
-        echo '<p>Year: ' . $car['year'] . '</p>';
-        echo '<button id="learn-more"><a href="' . $car['details_url'] . '">View Details</a></button>';
+        echo '<p class="price">Cena: $' . $car['price'] . '</p>';
+        echo '<p>Gads: ' . $car['year'] . '</p>';
+        echo '<button id="learn-more"><a href="' . $car['details_url'] . '">Skatīt detaļas</a></button>';
         echo '</div>';
     }
-    ?>
+?>
+
 </ul>
 
 <style>
-    /* Welcome */
+    /* Laipni lūdzam teksts */
     #welcome {
         display: flex;
         justify-content: center;
@@ -182,7 +197,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         margin-bottom: 20px;
     }
 
-    /* Car filter */
+    /* Mašīnu filtrs */
     #car-filter {
         margin: 0 auto;
         max-width: 600px;
@@ -237,7 +252,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         background-color: #000;
     }
 
-    /* Car cards */
+    /* Mašīnu kārtis */
     .card {
         width: 300px;
         height: 400px;
@@ -262,10 +277,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     .card p {
         margin: 10px;
         font-size: 14px;
-    }
-
-    #learn-more{
-
     }
 </style>
 
