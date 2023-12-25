@@ -173,7 +173,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         echo '<h3>' . $car['make'] . ' ' . $car['model'] . '</h3>';
         echo '<p class="price">Cena: $' . $car['price'] . '</p>';
         echo '<p>Gads: ' . $car['year'] . '</p>';
-        echo '<button id="learn-more"><a href="' . $car['details_url'] . '">Skatīt detaļas</a></button>';
+        echo '<button id="learn-more"><a href="' . $car['details_url'] . '">View Car</a></button>';
         echo '</div>';
     }
 ?>
@@ -278,6 +278,24 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         margin: 10px;
         font-size: 14px;
     }
+
+#learn-more {
+display: inline-block;
+padding: 10px 20px;
+font-size: 16px;
+text-align: center;
+text-decoration: none;
+cursor: pointer;
+border: 1px solid #3498db; /* Border color */
+color: #ffffff; /* Text color */
+background-color: #3498db; /* Background color */
+border-radius: 5px; /* Rounded corners */
+}
+
+#learn-more {
+background-color: #2980b9; /* Darker background color on hover */
+border-color: #2980b9; /* Darker border color on hover */
+}
 </style>
 
 </body>
