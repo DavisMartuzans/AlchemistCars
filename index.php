@@ -86,7 +86,7 @@ $conn->close();
 </nav>
 
 <body>
-    <section id="welcome-screen">
+    <section id="welcome-section">
         <div id="welcome-background"></div>
             <div class="welcome-text">
         <h2 id="welcome">Welcome to AlchemistCars</h2>
@@ -103,9 +103,10 @@ $conn->close();
             echo '<p class="about">If you find anything you like, please sign in to access additional features.</p>';
         }
         ?>
+        <a class="about" href="#cars-section">Get your car today</a>
             </div>
     </section>
-
+<section id="cars-section">
 <div id="car-filter">
     <!-- Filtrēšanas veidlapa ar diviem izvēles laukiem un iesniegšanas pogu -->
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
@@ -180,10 +181,10 @@ $conn->close();
 ?>
 
 </ul>
-
+</section>
 <style>
 /*Laipni lūdzam ekrāns */
-#welcome-screen{
+#welcome-section{
     height: 100vh;
 }
 #welcome-background{
@@ -197,9 +198,9 @@ $conn->close();
 }
 .welcome-text{
     background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+    background-color: rgba(0, 0, 0, 0.1); /* Black w/opacity/see-through */
     color: white;
-    font-weight: bold;
+    font-weight:bold;
     position: absolute;
     top: 30%;
     left: 50%;
@@ -214,7 +215,8 @@ $conn->close();
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 30px;
+        font-size: 60px;
+        font-weight:bold;
         color: white;
         text-align: center;
         margin-bottom: 20px;
@@ -237,8 +239,9 @@ $conn->close();
     }
 
     #car-filter form {
-        display: flex;
-        flex-wrap: wrap;
+        display: inline-flex;
+        flex-direction: row;
+        gap: 10px;
     }
 
     #car-filter label {
@@ -310,23 +313,37 @@ $conn->close();
     }
 
 #learn-more {
-display: inline-block;
-padding: 10px 20px;
-font-size: 16px;
-text-align: center;
-text-decoration: none;
-cursor: pointer;
-border: 1px solid #3498db; /* Border color */
-color: #ffffff; /* Text color */
-background-color: #3498db; /* Background color */
-border-radius: 5px; /* Rounded corners */
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #3498db; /* Border color */
+    color: #ffffff; /* Text color */
+    background-color: #3498db; /* Background color */
+    border-radius: 5px; /* Rounded corners */
 }
 
 #learn-more {
-background-color: #2980b9; /* Darker background color on hover */
-border-color: #2980b9; /* Darker border color on hover */
+    background-color: #2980b9;
+    border-color: #2980b9; 
+}
+/* Pielāgota ritjosla */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: whitesmoke;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color:lightgray;
+  border-radius: 20px;
+  border: 2px gray;
 }
 </style>
-
+<script src="script.js"></script>
 </body>
 </html>

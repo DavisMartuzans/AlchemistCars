@@ -3,7 +3,8 @@ body {
   height: auto;
   width: auto;
   font-family: 'Lato';font-size: 15px;
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
+  scroll-behavior: cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 /* Nav bar */
