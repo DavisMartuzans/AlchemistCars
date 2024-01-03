@@ -33,3 +33,18 @@ nav a {
   color: #333;
   text-decoration: none;
 }
+
+/* Pielāgota ritjosla */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: whitesmoke;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color:lightgray;
+  border-radius: 20px;
+  border: 2px gray;
+}
