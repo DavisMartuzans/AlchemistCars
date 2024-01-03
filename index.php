@@ -82,28 +82,29 @@ $conn->close();
         </ul>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
 
 <body>
-<h2 id="welcome">Welcome to AlchemistCars</h2>
-<?php
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    // For signed-in users
-    echo '<p class="about">You are logged in as ' . $_SESSION['username'] . '</p>';
-    echo '<p class="about">Here you can find a variety of awesome cars.</p>';
-    echo '<p class="about">If you find anything you like, contact us and meet us.</p>';
-    // Additional content for logged-in users
-} else {
-    // For non-logged-in users
-    echo '<p class="about">Here you can find a variety of awesome cars.</p>';
-    echo '<p class="about">If you find anything you like, please sign in to access additional features.</p>';
-}
-?>
+    <section id="welcome-screen">
+        <div id="welcome-background"></div>
+            <div class="welcome-text">
+        <h2 id="welcome">Welcome to AlchemistCars</h2>
+        <?php
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+            // For signed-in users
+            echo '<p class="about">You are logged in as ' . $_SESSION['username'] . '</p>';
+            echo '<p class="about">Here you can find a variety of awesome cars.</p>';
+            echo '<p class="about">If you find anything you like, contact us and meet us.</p>';
+            // Additional content for logged-in users
+        } else {
+            // For non-logged-in users
+            echo '<p class="about">Here you can find a variety of awesome cars.</p>';
+            echo '<p class="about">If you find anything you like, please sign in to access additional features.</p>';
+        }
+        ?>
+            </div>
+    </section>
 
 <div id="car-filter">
     <!-- Filtrēšanas veidlapa ar diviem izvēles laukiem un iesniegšanas pogu -->
@@ -181,18 +182,47 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 </ul>
 
 <style>
+/*Laipni lūdzam ekrāns */
+#welcome-screen{
+    height: 100vh;
+}
+#welcome-background{
+    background-image: url('Components/mbbackground4k.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+.welcome-text{
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
     /* Laipni lūdzam teksts */
-    #welcome {
+    #welcome{
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 30px;
+        color: white;
         text-align: center;
         margin-bottom: 20px;
     }
 
     .about {
         font-size: 20px;
+        color: white;
         text-align: center;
         margin-bottom: 20px;
     }

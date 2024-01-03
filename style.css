@@ -3,6 +3,7 @@ body {
   height: auto;
   width: auto;
   font-family: 'Lato';font-size: 15px;
+  scroll-behavior: smooth
 }
 
 /* Nav bar */
