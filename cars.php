@@ -111,7 +111,89 @@ $conn->close();
         ?>
     </ul>
 </section>
+<style>
+    /* Mašīnu filtrs */
+#car-filter {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-<?php include 'includes/footer.php'; ?>
+#car-filter form {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#car-filter label {
+    flex-basis: 100%;
+}
+
+#car-filter select,
+#car-filter input[type="submit"] {
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#car-filter select {
+    flex-basis: calc(33.33% - 10px);
+}
+
+#car-filter input[type="submit"] {
+    flex-basis: 100%;
+    background-color: #454545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#car-filter input[type="submit"]:hover {
+    background-color: #454545;
+}
+
+#filterButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #454545;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+#filterButton:hover {
+    background-color: #000;
+}
+
+/* Mašīnu kārtis */
+.card {
+    width: 300px;
+    height: 400px;
+    box-shadow: 2px 2px 5px #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px;
+    display: inline-block;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 10px;
+    font-size: 18px;
+}
+
+.card p {
+    margin: 10px;
+    font-size: 14px;
+}
+</style>
 </body>
 </html>

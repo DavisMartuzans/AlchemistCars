@@ -38,8 +38,70 @@ require_once('db_credentials.php');
         ?>
         <a class="about" href="cars.php">Get your car today</a>
     </div>
-</section>
 
-<?php include 'includes/footer.php'; ?>
+
+</section>
+<style>
+/*Laipni lūdzam ekrāns */
+#welcome-background{
+  background-image: url("Components\mbbackground4k.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.welcome-text{
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.1); /* Black w/opacity/see-through */
+    color: white;
+    font-weight:bold;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+/* Laipni lūdzam teksts */
+#welcome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    font-weight:bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about {
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#learn-more {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #3498db; /* Border color */
+    color: #ffffff; /* Text color */
+    background-color: #3498db; /* Background color */
+    border-radius: 5px; /* Rounded corners */
+}
+
+#learn-more {
+    background-color: #2980b9;
+    border-color: #2980b9; 
+}
+</style>
 </body>
 </html>
