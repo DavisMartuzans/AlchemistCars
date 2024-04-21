@@ -103,6 +103,9 @@ $conn->close();
             echo '<p>' . $row['description'] . '</p>';
             echo '<p>Price: $' . $row['price'] . '</p>';
             echo '<img src="Components/' . $row['image'] . '" alt="Part Image">';
+            echo '<form action="buy.php" method="post">';
+            echo '<input type="submit" value="Buy" class="btn btn-primary">';
+            echo '</form>';
             echo '</div>';
         }
     } else {
@@ -126,49 +129,51 @@ $conn->close();
 <style>
     /* Welcome */
     .welcome {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 30px;
-        text-align: center;
-        margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     .about {
-        font-size: 20px;
-        text-align: center;
-        margin-bottom: 20px;
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 20px;
     }
     
-/*Parts*/
-.part-list {
-  margin-top: 20px;
-}
+    /* Parts */
+    .part-list {
+      margin-top: 20px;
+    }
 
-.part-item {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
+    .part-item {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
 
-.part-item h3 {
-  font-size: 18px;
-  margin-top: 0;
-}
+    .part-item h3 {
+      font-size: 18px;
+      margin-top: 0;
+    }
 
-.part-item p {
-  margin: 5px 0;
-}
+    .part-item p {
+      margin: 5px 0;
+    }
 
-.part-item img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  margin-top: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
+    .part-item img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
 
 </style>
 

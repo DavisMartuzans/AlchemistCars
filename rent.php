@@ -214,19 +214,15 @@ $conn->close();
 
     </div> 
 </div>
-    <script>
-        let cardNumInput = document.querySelector('#cardNum');
+<script>
+        // Function to show payment information section
+        function showPaymentInfo() {
+            $(".billing-address").slideUp();
+            $(".payment-info").slideDown();
+            $("#rent-now").hide();
+            $("#submit-payment").show();
+        }
 
-        cardNumInput.addEventListener('keyup', () => {
-            let cNumber = cardNumInput.value;
-            cNumber = cNumber.replace(/\s/g, "");
-
-            if (Number(cNumber)) {
-                cNumber = cNumber.match(/.{1,4}/g);
-                cNumber = cNumber.join(" ");
-                cardNumInput.value = cNumber;
-            }
-        });
         $(document).ready(function() {
             $("#rent-now").click(function() {
                 var pickupDate = $("#pickup-date").val();
@@ -234,11 +230,16 @@ $conn->close();
                 if (pickupDate === '' || endDate === '') {
                     alert("Please select pickup and end dates.");
                 } else {
-                    $("#payment-form").slideDown();
+                    showPaymentInfo();
                 }
             });
+
+            $("#submit-payment").click(function() {
+                // You can add validation here before submitting the form
+                $("#rent-form").submit();
+            });
         });
-    </script> 
+    </script>
 
 </body>
 
