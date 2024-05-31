@@ -3,14 +3,14 @@ session_start();
 
 require_once('db_credentials.php');
 
-// Pārbauda, vai cars ID ir nodots URL
+// Check if car ID is passed in the URL
 if (!isset($_GET['id'])) {
-    // Ja cars ID nav norādīts, novirza automašīnu lapu
+    // If car ID is not specified, redirect to the cars listing page
     header("Location: cars.php");
     exit();
 }
 
-// Iegūst automašīnas datus no datubāzes, izmantojot norādīto ID
+// Get car data from the database using the specified ID
 $carId = $_GET['id'];
 $sql = "SELECT * FROM cars WHERE id = ?";
 $stmt = $conn->prepare($sql);
@@ -18,9 +18,9 @@ $stmt->bind_param("i", $carId);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Iegūst automašīnas datus
+// Fetch car data
 if ($result->num_rows === 0) {
-    // Ja nekāda automašīna nav atrasta ar norādīto ID, novirza uz automašīnu lapu
+    // If no car is found with the specified ID, redirect to the cars listing page
     header("Location: cars.php");
     exit();
 }
@@ -30,89 +30,111 @@ $car = $result->fetch_assoc();
 $conn->close();
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Car Details - <?php echo $car['make'] . ' ' . $car['model']; ?></title>
+    <title>Car Details - <?php echo htmlspecialchars($car['make'] . ' ' . $car['model']); ?></title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .car-info img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .car-details {
+            text-align: center;
+        }
+
+        .car-details h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .car-details p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .car-details p span {
+            font-weight: bold;
+        }
+
+        .car-details .price {
+            font-size: 36px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .action-buttons a {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .rent-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .rent-button:hover {
+            background-color: #0056b3;
+        }
+
+        .buy-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .buy-button:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
+<body>
 
 <?php include 'includes/navbar.php'; ?>
 
-<body>
-    <div class="container">
-        <h2>Car Details - <?php echo $car['make'] . ' ' . $car['model']; ?></h2>
-        <div class="car-info">
-            <img src="Components/<?php echo $car['image']; ?>" alt="<?php echo $car['make'] . ' ' . $car['model']; ?>">
-            <h3><?php echo $car['make'] . ' ' . $car['model']; ?></h3>
-            <p>Price: $<?php echo $car['price']; ?></p>
-            <p>Year: <?php echo $car['year']; ?></p>
-            <p>Description: <?php echo $car['description']; ?></p>
-
-            <a href="rent.php?id=<?php echo $carId; ?>" class="rent-button">Rent</a>
+<div class="container">
+    <div class="car-info">
+        <img src="Components/<?php echo htmlspecialchars($car['image']); ?>" alt="<?php echo htmlspecialchars($car['make'] . ' ' . $car['model']); ?>">
+        <div class="car-details">
+            <h3><?php echo htmlspecialchars($car['make'] . ' ' . $car['model']); ?></h3>
+            <p class="price">$<?php echo htmlspecialchars(number_format($car['price'], 2)); ?></p>
+            <p><span>Year:</span> <?php echo htmlspecialchars($car['year']); ?></p>
+            <p><span>Description:</span> <?php echo htmlspecialchars($car['description']); ?></p>
+            <div class="action-buttons">
+                <a href="rent.php?id=<?php echo htmlspecialchars($carId); ?>" class="rent-button">Rent</a>
+                <a href="buy.php?id=<?php echo htmlspecialchars($carId); ?>" class="buy-button">Buy</a>
+            </div>
         </div>
     </div>
-    <style>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+</div>
 
-.car-info {
-  max-width: 600px;
-  padding: 30px;
-  background-color: #fff;
-  margin: 30px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.car-info h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.car-info img {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.car-info h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.car-info p {
-  font-size: 16px;
-  margin-bottom: 8px;
-}
-
-.car-info p:last-child {
-  margin-bottom: 0;
-}
-
-.car-info p span {
-  font-weight: bold;
-}
-
-.car-info p.description {
-  margin-top: 15px;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 20px;
-  }
-}
-    </style>
 </body>
 </html>
